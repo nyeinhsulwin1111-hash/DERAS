@@ -40,7 +40,7 @@
                 </div>
             </div>
 
-            <!-- Metric 3: ယခုနှစ်လက်ကျန် -->
+            <!-- Metric 3: လက်ကျန် -->
             <div class="modern-card p-5 border-l-4 border-l-amber-500 hover:scale-[1.02] transition-transform">
                 <div class="flex items-center justify-between">
                     <div>
@@ -251,7 +251,7 @@
                                 maxBarThickness: 32
                             },
                             {
-                                label: 'ဖြန့်ဝေ',
+                                label: 'ပြဌာန်းစာအုပ်ဖြန့်ဝေ',
                                 data: barData.distributed,
                                 backgroundColor: '#0284c7', // Sky (match donut)
                                 borderRadius: 0,

@@ -154,7 +154,7 @@
                                                 @csrf
                                                 @method('DELETE')
 
-                                                <button type="submit" class="btn-modern-danger" title="ဖျက်ပါ" onclick="return confirm('ဖျက်ရန် သေချာပါသလား?')">
+                                                <button type="submit" class="btn-modern-danger" title="ဖျက်ပါ">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
@@ -167,7 +167,7 @@
                         <tr>
                             <td colspan="{{ auth()->user()?->role === 'super' ? 5 : 4 }}" class="text-slate-400 py-8 text-center font-medium">
                                 <i class="fas fa-user-slash text-3xl mb-2 block text-slate-300"></i>
-                                စီမံခန့်ခွဲသူများ မရှိသေးပါ။
+                                အချက်အလက် မရှိသေးပါ။
                             </td>
                         </tr>
                     @endforelse

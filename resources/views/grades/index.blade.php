@@ -55,7 +55,7 @@
             </div>
         </div>
 
-        <div class="modern-table-container mt-4" style="overflow-x:auto;">
+        <div class="modern-table-container mt-4">
             <table class="modern-table" style="min-width: 1100px;">
                 <thead style="background-color: #072a1e; color: #ffffff;">
                     <tr>
@@ -122,7 +122,7 @@
                                             class="d-inline m-0">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn-modern-danger" title="ဖျက်ရန်" onclick="return confirm('ဖျက်ရန်?')">
+                                            <button class="btn-modern-danger" title="ဖျက်ရန်">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
@@ -134,7 +134,7 @@
                         <tr>
                             <td colspan="{{ 4 + $orderedCategories->count() }}" class="text-slate-400 py-8 text-center font-medium">
                                 <i class="fas fa-inbox text-3xl mb-2 block text-slate-300"></i>
-                                အတန်းအချက်အလက် မရှိသေးပါ။
+                                အချက်အလက် မရှိသေးပါ။
                             </td>
                         </tr>
                     @endforelse

@@ -46,7 +46,7 @@
         user-select: none;
     }
     .status-switch.active {
-        background: #198754;
+        background: var(--deras-leaf);
     }
     .status-knob {
         position: absolute;
@@ -143,7 +143,7 @@
     <div class="col-md-6">
         <label class="form-label"><i class="fas fa-phone me-1"></i> ဖုန်းနံပါတ် <span class="text-danger">*</span></label>
         <input type="text" name="phone" class="form-control"
-            value="{{ old('phone', $companyContact->phone ?? '') }}" placeholder="ဖုန်းနံပါတ် ထည့်သွင်းပါ" required>
+            value="{{ old('phone', $companyContact->phone ?? '') }}" placeholder="ဖုန်းနံပါတ် ထည့်သွင်းပါ" required data-validate="phone">
     </div>
 </div>
 

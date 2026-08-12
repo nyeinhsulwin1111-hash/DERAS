@@ -1,0 +1,40 @@
+/* DERAS frontend validation styles */
+.deras-field-invalid,
+input.deras-field-invalid,
+select.deras-field-invalid,
+textarea.deras-field-invalid,
+.form-control.deras-field-invalid,
+.form-select.deras-field-invalid,
+.modern-input.deras-field-invalid,
+.modern-select.deras-field-invalid {
+    border-color: var(--deras-rose, #dc2626) !important;
+    box-shadow: 0 0 0 0.2rem rgba(220, 38, 38, 0.18) !important;
+    background-color: #fef2f2 !important;
+}
+
+.deras-field-invalid:focus,
+.form-control.deras-field-invalid:focus,
+.form-select.deras-field-invalid:focus,
+.modern-input.deras-field-invalid:focus,
+.modern-select.deras-field-invalid:focus {
+    border-color: var(--deras-rose, #dc2626) !important;
+    box-shadow: 0 0 0 0.22rem rgba(220, 38, 38, 0.25) !important;
+    outline: none !important;
+}
+
+.deras-field-error {
+    display: block;
+    color: var(--deras-rose, #dc2626) !important;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-top: 0.4rem;
+    margin-bottom: 0;
+}
+
+.deras-field-error::before {
+    content: "\f06a";
+    font-family: "Font Awesome 5 Free", "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 0.35rem;
+}

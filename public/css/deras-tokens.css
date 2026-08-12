@@ -1,0 +1,15 @@
+/* DERAS brand color tokens — shared by app + auth shells */
+:root {
+    --deras-forest: #072a1e;
+    --deras-pine: #0d3d2e;
+    --deras-deep: #051c14;
+    --deras-leaf: #105c3a;
+    --deras-emerald: #059669;
+    --deras-mint: #34d399;
+    --deras-gold: #d4af37;
+    --deras-amber: #f59e0b;
+    --deras-amber-light: #fbbf24;
+    --deras-amber-dark: #d97706;
+    --deras-paper: #f8fbf9;
+    --deras-rose: #dc2626;
+}

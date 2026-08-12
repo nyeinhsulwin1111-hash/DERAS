@@ -125,10 +125,18 @@
                             <td class="font-mono text-slate-600">{{ number_format($issue->district_unit) }}</td>
                             <td class="font-mono text-slate-600">{{ number_format($issue->package_unit) }}</td>
                             @foreach ($townships as $township)
-                                @php $detail = $issue->townshipIssues->firstWhere('township_id', $township->id); @endphp
-                                <td class="font-mono text-slate-700">{{ number_format($detail?->issued_quantity ?? 0) }}</td>
-                                <td class="font-mono text-amber-700 font-semibold">{{ number_format($detail?->full_package_count ?? 0) }}</td>
-                                <td class="font-mono text-emerald-700 font-semibold">{{ number_format($detail?->loose_book_count ?? 0) }}</td>
+                                @php
+                                    $detail = $issue->townshipIssues->firstWhere('township_id', $township->id);
+                                    $tintClass = match ($township->name) {
+                                        'မြန်အောင်' => 'col-tint-myanaung',
+                                        'ကြံခင်း' => 'col-tint-kyankhin',
+                                        'အင်္ဂပူ' => 'col-tint-ingapu',
+                                        default => '',
+                                    };
+                                @endphp
+                                <td class="font-mono text-slate-700 {{ $tintClass }}">{{ number_format($detail?->issued_quantity ?? 0) }}</td>
+                                <td class="font-mono text-amber-700 font-semibold {{ $tintClass }}">{{ number_format($detail?->full_package_count ?? 0) }}</td>
+                                <td class="font-mono text-emerald-700 font-semibold {{ $tintClass }}">{{ number_format($detail?->loose_book_count ?? 0) }}</td>
                             @endforeach
                             <td class="whitespace-nowrap">
                                 <div class="inline-flex items-center gap-1.5">
@@ -139,8 +147,7 @@
                                             class="d-inline m-0">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn-modern-danger" title="ဖျက်ပါ"
-                                                onclick="return confirm('ဖျက်ရန်?')"><i class="fas fa-trash"></i></button>
+                                            <button class="btn-modern-danger" title="ဖျက်ပါ"><i class="fas fa-trash"></i></button>
                                         </form>
                                     @endif
                                 </div>
@@ -149,7 +156,7 @@
                     @empty
                         <tr>
                             <td colspan="{{ 7 + count($townships) * 3 }}" class="text-muted py-4 text-center">
-                                Data မရှိသေးပါ။
+                                အချက်အလက် မရှိသေးပါ။
                             </td>
                         </tr>
                     @endforelse

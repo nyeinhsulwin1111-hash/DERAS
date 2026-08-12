@@ -91,7 +91,7 @@
         @if (empty($blocks))
             <div class="bg-amber-50 border border-amber-200 text-amber-800 rounded-xl p-4 text-center font-medium mt-4">
                 <i class="fas fa-exclamation-triangle mr-2 text-amber-600"></i>
-                Data မရှိသေးပါ။
+                အချက်အလက် မရှိသေးပါ။
             </div>
         @else
             <div class="modern-table-container mt-4">
@@ -162,8 +162,7 @@
                                                         method="POST" class="d-inline m-0">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button class="btn-modern-danger" title="ဖျက်ပါ"
-                                                            onclick="return confirm('ဖျက်ရန်?')">
+                                                        <button class="btn-modern-danger" title="ဖျက်ပါ">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
                                                     </form>

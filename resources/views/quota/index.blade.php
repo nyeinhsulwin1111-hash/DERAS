@@ -270,8 +270,7 @@
                                                     @csrf
                                                     @method('DELETE')
 
-                                                    <button type="submit" class="btn-action-delete" title="ဖျက်ရန်"
-                                                        onclick="return confirm('ဖျက်ရန် သေချာပါသလား?')">
+                                                    <button type="submit" class="btn-action-delete" title="ဖျက်ရန်">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
 
@@ -285,7 +284,7 @@
 
                                 <tr>
                                     <td colspan="22" class="py-4 text-muted">
-                                        Data မရှိပါ။
+                                        အချက်အလက် မရှိသေးပါ။
                                     </td>
                                 </tr>
                             @endforelse

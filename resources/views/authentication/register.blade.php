@@ -2,349 +2,372 @@
 
 @section('content')
     <style>
-        body {
-            background: #f4f7f6;
+        body#page-top {
+            margin: 0;
+            min-height: 100vh;
+            background: #fff;
+        }
+
+        .login-wrap {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        .login-visual {
+            width: 34%;
+            background: var(--deras-forest);
+            color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 15px;
-            font-family: sans-serif;
+            padding: 48px 36px;
         }
 
-        .auth-card {
-            width: 100%;
-            max-width: 680px;
-            border: none;
-            border-radius: 24px;
-            overflow: hidden;
-            background: #ffffff;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        .login-visual-inner {
+            text-align: center;
+            max-width: 380px;
         }
 
-        .top-bar {
-            height: 6px;
-            background: #117729;
-        }
-
-        .card-body {
-            padding: 2.3rem;
-        }
-
-        .brand-img {
+        .login-visual img {
             width: 100px;
             height: 100px;
             object-fit: cover;
+            border-radius: 50%;
+            border: 2.5px solid var(--deras-gold);
+            background: #fff;
+            margin-bottom: 18px;
         }
 
-        .title {
-            color: #117729;
-            font-weight: bold;
+        .login-visual h1 {
+            margin: 0 0 12px;
+            font-size: 36px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: var(--deras-amber);
+            line-height: 1.1;
         }
 
-        .gold-line {
-            width: 60px;
-            height: 3px;
-            background: #f1c40f;
-            margin: 8px auto;
-            border-radius: 30px;
-        }
-
-        .subtitle {
-            color: #777;
-            font-size: 14px;
-            margin-bottom: 0;
-        }
-
-        label {
-            font-size: 14px;
+        .login-visual .system-name {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.6;
             font-weight: 600;
-            margin-bottom: 5px;
-            color: #333;
+            color: #e2e8f0;
         }
 
-        .form-control,
-        .form-select {
-            border-radius: 10px;
-            padding: 10px 14px;
-            border: 1px solid #ced4da;
-            background: #fafafa;
+        .login-visual .mm-note {
+            margin: 18px 0 0;
+            padding-top: 16px;
+            border-top: 1px solid rgba(212, 175, 55, 0.4);
             font-size: 14px;
+            line-height: 1.7;
+            color: #cbd5e1;
         }
 
-        .form-control:focus,
-        .form-select:focus {
-            border-color: #117729 !important;
-            box-shadow: 0 0 0 0.15rem rgba(17, 119, 41, 0.15) !important;
+        .login-form-side {
+            width: 66%;
+            display: flex;
+            flex-direction: column;
+            background: var(--deras-paper);
+            padding: 24px 36px 36px;
         }
 
-        .form-select {
-            appearance: auto;
+        .login-topbar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
         }
 
-        .form-check-input:checked {
-            background-color: #117729;
-            border-color: #117729;
+        .login-topbar img {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid var(--deras-gold);
+            background: #fff;
         }
 
-        .btn-custom {
-            background: #117729;
+        .login-topbar span {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--deras-leaf);
+            line-height: 1.35;
+        }
+
+        .login-form-center {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 760px;
+            background: #fff;
+            border: 1px solid #dce8e1;
+            border-radius: 12px;
+            padding: 36px 40px;
+            box-shadow: 0 2px 12px rgba(7, 42, 30, 0.06);
+        }
+
+        .login-box h2 {
+            margin: 0 0 6px;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--deras-leaf);
+        }
+
+        .login-box .sub {
+            margin: 0 0 22px;
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .login-field {
+            margin-bottom: 14px;
+        }
+
+        .login-field label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #334155;
+        }
+
+        .login-field .form-control,
+        .login-field .form-select {
+            border: 1px solid #c5d5cc;
+            border-radius: 8px;
+            background: #fff;
+            min-height: 46px;
+            padding: 10px 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            box-shadow: none;
+            width: 100%;
+        }
+
+        .login-field .form-control:focus,
+        .login-field .form-select:focus {
+            border-color: var(--deras-leaf);
+            box-shadow: 0 0 0 0.15rem rgba(16, 92, 58, 0.15);
+        }
+
+        .pass-wrap {
+            position: relative;
+        }
+
+        .pass-wrap .form-control {
+            padding-right: 42px;
+        }
+
+        .pass-wrap i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        .pass-wrap i:hover {
+            color: var(--deras-leaf);
+        }
+
+        .btn-login {
+            width: 100%;
+            margin-top: 8px;
             border: none;
-            border-radius: 10px;
-            padding: 11px;
-            color: white;
-            font-weight: bold;
-            transition: 0.3s;
+            border-radius: 8px;
+            background: var(--deras-leaf);
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+            padding: 12px 16px;
         }
 
-        .btn-custom:hover {
-            background: #0d5e20;
+        .btn-login:hover {
+            background: #0d4a2f;
+            color: #fff;
         }
 
-        .form-section {
-            margin-bottom: 15px;
-        }
-
-        .login-text {
+        .login-link-row {
+            margin-top: 18px;
+            text-align: center;
             font-size: 14px;
+            color: #64748b;
         }
 
-        .login-link:hover {
-            text-decoration: underline;
+        .login-link-row a {
+            color: var(--deras-leaf);
+            font-weight: 700;
+            text-decoration: none !important;
+        }
+
+        .login-link-row a:hover,
+        .login-link-row a:focus,
+        .login-link-row a:active,
+        .login-link-row a:visited {
+            color: #0d4a2f;
+            text-decoration: none !important;
+        }
+
+        @media (max-width: 900px) {
+            .login-wrap {
+                flex-direction: column;
+            }
+
+            .login-visual,
+            .login-form-side {
+                width: 100%;
+            }
+
+            .login-visual {
+                padding: 28px 20px;
+            }
+
+            .login-visual img {
+                width: 84px;
+                height: 84px;
+            }
+
+            .login-visual h1 {
+                font-size: 30px;
+            }
+
+            .login-form-side {
+                padding: 16px 16px 32px;
+            }
         }
     </style>
 
-    <div class="container">
-        <div class="row justify-content-center">
+    <div class="login-wrap">
+        <div class="login-visual">
+            <div class="login-visual-inner">
+                <img src="{{ asset('image/logo.jpg') }}" alt="DERAS">
+                <h1>DERAS</h1>
+                <p class="system-name">Resource Allocation and Distribution System</p>
+                <p class="mm-note">ပညာရေးအရင်းအမြစ်များ ခွဲတမ်းချထားခြင်းနှင့် ဖြန့်ဝေမှု စီမံခန့်ခွဲရေးစနစ်</p>
+            </div>
+        </div>
 
-            <div class="card auth-card">
+        <div class="login-form-side">
+            <div class="login-topbar">
+                <img src="{{ asset('image/logo.jpg') }}" alt="DERAS">
+                <span>DERAS — Resource Allocation and Distribution System</span>
+            </div>
 
-                <div class="top-bar"></div>
-
-                <div class="card-body">
-
-                    <div class="mb-4 text-center">
-
-                        <img src="{{ asset('image/logo.jpg') }}"
-                            class="border-4 shadow-sm rounded-circle border-success brand-img">
-
-                        <h4 class="mt-3 title">
-                            အကောင့်အသစ်ဖွင့်ရန်
-                        </h4>
-
-                        <div class="gold-line"></div>
-
-                        <p class="subtitle">
-                            အောက်ပါအချက်အလက်များကို ဖြည့်သွင်းပါ
-                        </p>
-
-                    </div>
+            <div class="login-form-center">
+                <div class="login-box">
+                    <h2>အကောင့်အသစ်ဖွင့်ရန်</h2>
+                    <p class="sub">အောက်ပါအချက်အလက်များကို ဖြည့်သွင်းပါ</p>
 
                     <form method="POST" action="{{ url('register') }}">
-
                         @csrf
 
-                        <div class="row g-3 form-section">
-
+                        <div class="row g-3">
                             <div class="col-md-6">
-
-                                <label>အမည်</label>
-
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                    placeholder="အသုံးပြုသူ၏အမည်ကို ထည့်ပါ">
-
-                                @error('name')
-                                    <small class="text-danger">
-                                        {{ $message }}
-                                    </small>
-                                @enderror
-
+                                <div class="login-field">
+                                    <label for="name">အမည်</label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        class="form-control"
+                                        value="{{ old('name') }}"
+                                        placeholder="အမည် ထည့်ပါ"
+                                        required
+                                    >
+                                    @error('name')
+                                        <small class="text-danger d-block mt-1">{{ $message }}</small>
+                                    @enderror
+                                </div>
                             </div>
-
                             <div class="col-md-6">
-
-                                <label>ဖုန်းနံပါတ်</label>
-
-                                <input type="text" class="form-control" name="phone" value="{{ old('phone') }}"
-                                    placeholder="ဖုန်းနံပါတ်ကို ထည့်ပါ">
-
-                                @error('phone')
-                                    <small class="text-danger">
-                                        {{ $message }}
-                                    </small>
-                                @enderror
-
+                                <div class="login-field">
+                                    <label for="email">အီးမေးလ်</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        class="form-control"
+                                        value="{{ old('email') }}"
+                                        placeholder="example@email.com"
+                                        required
+                                        autocomplete="username"
+                                    >
+                                    @error('email')
+                                        <small class="text-danger d-block mt-1">{{ $message }}</small>
+                                    @enderror
+                                </div>
                             </div>
-
                         </div>
 
-                        <div class="mb-4 form-section">
-
-                            <label for="position" class="form-label d-block">
-                                ရာထူး
-                            </label>
-
-                            <select id="position" class="mt-1 form-select w-100" name="position" required>
-
-                                <option value="" disabled {{ old('position') ? '' : 'selected' }}>
-                                    မိမိ၏ရာထူးကိုရွေးပါ
-                                </option>
-
-                                <option value="manager" {{ old('position') === 'manager' ? 'selected' : '' }}>
-                                    ဒုဦးစီးမှူး(စာရင်းအင်း)
-                                </option>
-
-                                <option value="staff" {{ old('position') === 'staff' ? 'selected' : '' }}>
-                                    ဦးစီးအရာရှိ(ဝန်ထမ်း)
-                                </option>
-
-                                <option value="supervisor" {{ old('position') === 'supervisor' ? 'selected' : '' }}>
-                                    Supervisor
-                                </option>
-
-                                <option value="clerk" {{ old('position') === 'clerk' ? 'selected' : '' }}>
-                                    Clerk
-                                </option>
-
-                            </select>
-
-                            @error('position')
-                                <div class="mt-1">
-                                    <small class="text-danger">
-                                        {{ $message }}
-                                    </small>
-                                </div>
-                            @enderror
-
-                        </div>
-
-                        {{-- Role --}}
-                        <div class="mb-4 form-section">
-
-                            <label for="role" class="form-label d-block">
-                                အသုံးပြုသူအဆင့်
-                            </label>
-
-                            <select id="role" class="mt-1 form-select w-100" name="role" required>
-
-                                <option value="" disabled {{ old('role') ? '' : 'selected' }}>
-                                    အသုံးပြုသူအဆင့်ကို ရွေးပါ
-                                </option>
-                                <option value="super" {{ old('role') === 'super' ? 'selected' : '' }}>
-                                    Super Admin
-                                </option>
-                                <option value="admin" {{ old('role') === 'admin' ? 'selected' : '' }}>
-                                    Admin
-                                </option>
-                            </select>
-
-                            @error('role')
-                                <div class="mt-1">
-                                    <small class="text-danger">
-                                        {{ $message }}
-                                    </small>
-                                </div>
-                            @enderror
-
-                        </div>
-
-                        <div class="form-section">
-
-                            <label>အီးမေးလ်</label>
-
-                            <input type="email" class="form-control" name="email" value="{{ old('email') }}"
-                                placeholder="သင့်အီးမေးလ်လိပ်စာကို ထည့်ပါ">
-
-                            @error('email')
-                                <small class="text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-
-                        </div>
-
-                        <div class="mb-4 row g-3">
-
+                        <div class="row g-3">
                             <div class="col-md-6">
-
-                                <label class="form-label">
-                                    စကားဝှက်
-                                </label>
-
-                                <div style="position: relative; width: 100%;">
-
-                                    <input type="password" id="password" class="form-control w-100" name="password"
-                                        placeholder="သင့်စကားဝှက်ကို ထည့်ပါ" readonly
-                                        onfocus="setTimeout(()=>{this.removeAttribute('readonly');},100);"
-                                        style="padding-right: 40px; height: 45px;">
-
-                                    <i class="fas fa-eye-slash" id="icon1" onclick="togglePass('password', 'icon1')"
-                                        style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #6c757d; z-index: 5;">
-                                    </i>
-
+                                <div class="login-field">
+                                    <label for="password">စကားဝှက်</label>
+                                    <div class="pass-wrap">
+                                        <input
+                                            type="password"
+                                            id="password"
+                                            name="password"
+                                            class="form-control"
+                                            placeholder="စကားဝှက် ထည့်ပါ"
+                                            readonly
+                                            required
+                                            minlength="6"
+                                            autocomplete="new-password"
+                                            onfocus="setTimeout(()=>{this.removeAttribute('readonly');},100);"
+                                        >
+                                        <i class="fas fa-eye-slash" id="icon1"
+                                            onclick="togglePass('password', 'icon1')"></i>
+                                    </div>
+                                    @error('password')
+                                        <small class="text-danger d-block mt-1">{{ $message }}</small>
+                                    @enderror
                                 </div>
-
-                                @error('password')
-                                    <small class="text-danger">
-                                        {{ $message }}
-                                    </small>
-                                @enderror
-
                             </div>
-
                             <div class="col-md-6">
-
-                                <label class="form-label">
-                                    စကားဝှက်ကိုအတည်ပြုပါ
-                                </label>
-
-                                <div style="position: relative; width: 100%;">
-
-                                    <input type="password" id="password_confirmation" class="form-control w-100"
-                                        name="password_confirmation" placeholder="သင့်စကားဝှက်ကို အတည်ပြုပါ" readonly
-                                        onfocus="setTimeout(()=>{this.removeAttribute('readonly');},100);"
-                                        autocomplete="off" style="padding-right: 40px; height: 45px;">
-
-                                    <i class="fas fa-eye-slash" id="icon2"
-                                        onclick="togglePass('password_confirmation', 'icon2')"
-                                        style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #6c757d; z-index: 5;">
-                                    </i>
-
+                                <div class="login-field">
+                                    <label for="password_confirmation">စကားဝှက်အတည်ပြုရန်</label>
+                                    <div class="pass-wrap">
+                                        <input
+                                            type="password"
+                                            id="password_confirmation"
+                                            name="password_confirmation"
+                                            class="form-control"
+                                            placeholder="စကားဝှက် ပြန်ရိုက်ပါ"
+                                            readonly
+                                            required
+                                            minlength="6"
+                                            data-match="password"
+                                            autocomplete="new-password"
+                                            onfocus="setTimeout(()=>{this.removeAttribute('readonly');},100);"
+                                        >
+                                        <i class="fas fa-eye-slash" id="icon2"
+                                            onclick="togglePass('password_confirmation', 'icon2')"></i>
+                                    </div>
+                                    @error('password_confirmation')
+                                        <small class="text-danger d-block mt-1">{{ $message }}</small>
+                                    @enderror
                                 </div>
-
-                                @error('password_confirmation')
-                                    <small class="text-danger">
-                                        {{ $message }}
-                                    </small>
-                                @enderror
-
                             </div>
-
                         </div>
 
-                        <div class="mt-4 d-grid">
+                        <button type="submit" class="btn btn-login">အကောင့်ဖွင့်မည်</button>
 
-                            <button type="submit" class="p-2 btn btn-custom form-control">
-                                အကောင့်ဖွင့်မည်
-                            </button>
-
+                        <div class="login-link-row">
+                            အကောင့်ရှိပြီးသားလား?
+                            <a href="{{ route('login') }}">ဝင်မည်</a>
                         </div>
-
-                        <div class="mt-4 text-center small">
-
-                            <span class="text-muted login-text">
-                                အကောင့်ရှိပြီးသားလား?
-                            </span>
-
-                            <a href="{{ route('login') }}" class="mx-3 text-success fw-bold text-decoration-none">
-                                ဝင်မည်
-                            </a>
-
-                        </div>
-
                     </form>
-
                 </div>
             </div>
         </div>
@@ -352,27 +375,17 @@
 
     <script>
         function togglePass(inputId, iconId) {
-
             const input = document.getElementById(inputId);
             const icon = document.getElementById(iconId);
-
-
             if (input.type === "password") {
-
                 input.type = "text";
-
                 icon.classList.remove("fa-eye-slash");
                 icon.classList.add("fa-eye");
-
             } else {
-
                 input.type = "password";
-
                 icon.classList.remove("fa-eye");
                 icon.classList.add("fa-eye-slash");
-
             }
-
         }
     </script>
 @endsection

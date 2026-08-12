@@ -56,7 +56,7 @@
                         user-select: none;
                     }
                     .status-switch.active {
-                        background: #198754;
+                        background: var(--deras-leaf);
                     }
                     .status-knob {
                         position: absolute;

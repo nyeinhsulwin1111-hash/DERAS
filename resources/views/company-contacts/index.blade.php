@@ -95,8 +95,7 @@
                                             @csrf
                                             @method('DELETE')
 
-                                            <button class="btn-modern-danger" title="ဖျက်ရန်"
-                                                onclick="return confirm('ဖျက်ရန် သေချာပါသလား?')">
+                                            <button class="btn-modern-danger" title="ဖျက်ရန်">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>

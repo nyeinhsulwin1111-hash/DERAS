@@ -9,18 +9,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Login/register page</title>
+    <title>DERAS — Resource Allocation and Distribution System</title>
 
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin_folder/css/sb-admin-2.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/deras-tokens.css') }}?v=1" rel="stylesheet">
+    <link href="{{ asset('css/deras-validation.css') }}?v=1" rel="stylesheet">
 
     <style>
         body,
@@ -36,7 +36,7 @@
         label,
         input,
         button {
-            font-family: 'Pyidaungsu', 'Myanmar Text', sans-serif !important;
+            font-family: 'Noto Sans Myanmar', 'Pyidaungsu', 'Myanmar Text', sans-serif !important;
         }
 
         .fa,
@@ -76,6 +76,7 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('admin_folder/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('admin_folder/js/demo/chart-pie-demo.js') }}"></script>
+    <script src="{{ asset('js/deras-validation.js') }}?v=10"></script>
 
     @yield('scripts')
 

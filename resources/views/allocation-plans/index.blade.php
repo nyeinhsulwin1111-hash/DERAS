@@ -99,7 +99,7 @@
         </div>
 
         <div class="table-responsive">
-                <table class="table text-center align-middle table-bordered table-striped" style="min-width:4200px;">
+                <table class="table text-center align-middle table-bordered table-striped township-cols" style="min-width:4200px;">
                     <thead style="background-color: #072a1e; color: #ffffff;">
                         <tr>
                             <th rowspan="2">
@@ -690,8 +690,7 @@
                                                 class="m-0 d-inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn-modern-danger" title="ဖျက်ပါ"
-                                                    onclick="return confirm('ဖျက်ရန်သေချာပါသလား?')">
+                                                <button class="btn-modern-danger" title="ဖျက်ပါ">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
@@ -702,7 +701,7 @@
                         @empty
                             <tr>
                                 <td colspan="40">
-                                    Data မရှိပါ
+                                    အချက်အလက် မရှိသေးပါ။
                                 </td>
                             </tr>
                         @endforelse

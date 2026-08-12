@@ -189,8 +189,7 @@
                                             method="POST" class="d-inline m-0">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn-modern-danger" title="ဖျက်ပါ"
-                                                onclick="return confirm('ဖျက်ရန်?')">
+                                            <button type="submit" class="btn-modern-danger" title="ဖျက်ပါ">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
@@ -201,7 +200,7 @@
                     @empty
                         <tr>
                             <td colspan="20" class="text-muted py-4">
-                                Data မရှိသေးပါ။
+                                အချက်အလက် မရှိသေးပါ။
                             </td>
                         </tr>
                     @endforelse

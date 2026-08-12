@@ -70,3 +70,135 @@ nav.topbar {
 main {
     overflow-x: auto !important;
 }
+
+/*
+ * Ctrl+- browser zoom out only:
+ * Remove max-w-7xl style caps so wide pages fill the enlarged viewport.
+ */
+html.deras-zoomed-out .app-page-container {
+    max-width: none !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Township column vertical tints — refined pastel washes */
+:root {
+    --tint-myanaung: #daf3e6;
+    --tint-myanaung-hover: #c3ead5;
+    --tint-kyankhin: #dce8f8;
+    --tint-kyankhin-hover: #c5d9f3;
+    --tint-ingapu: #f9e8dc;
+    --tint-ingapu-hover: #f3d6c2;
+    --tint-total: #e9e7f2;
+    --tint-total-hover: #d9d5e8;
+}
+
+.col-tint-myanaung { background-color: var(--tint-myanaung) !important; }
+.col-tint-kyankhin { background-color: var(--tint-kyankhin) !important; }
+.col-tint-ingapu { background-color: var(--tint-ingapu) !important; }
+.col-tint-total { background-color: var(--tint-total) !important; }
+
+tbody tr:hover > .col-tint-myanaung { background-color: var(--tint-myanaung-hover) !important; }
+tbody tr:hover > .col-tint-kyankhin { background-color: var(--tint-kyankhin-hover) !important; }
+tbody tr:hover > .col-tint-ingapu { background-color: var(--tint-ingapu-hover) !important; }
+tbody tr:hover > .col-tint-total { background-color: var(--tint-total-hover) !important; }
+
+.township-cols tbody td:nth-child(7),
+.township-cols tbody td:nth-child(11),
+.township-cols tbody td:nth-child(15),
+.township-cols tbody td:nth-child(18),
+.township-cols tbody td:nth-child(21),
+.township-cols tbody td:nth-child(24),
+.township-cols tbody td:nth-child(28),
+.township-cols tbody td:nth-child(32),
+.township-cols tbody td:nth-child(36) { background-color: var(--tint-myanaung) !important; }
+
+.township-cols tbody td:nth-child(8),
+.township-cols tbody td:nth-child(12),
+.township-cols tbody td:nth-child(16),
+.township-cols tbody td:nth-child(19),
+.township-cols tbody td:nth-child(22),
+.township-cols tbody td:nth-child(25),
+.township-cols tbody td:nth-child(29),
+.township-cols tbody td:nth-child(33),
+.township-cols tbody td:nth-child(37) { background-color: var(--tint-kyankhin) !important; }
+
+.township-cols tbody td:nth-child(9),
+.township-cols tbody td:nth-child(13),
+.township-cols tbody td:nth-child(17),
+.township-cols tbody td:nth-child(20),
+.township-cols tbody td:nth-child(23),
+.township-cols tbody td:nth-child(26),
+.township-cols tbody td:nth-child(30),
+.township-cols tbody td:nth-child(34),
+.township-cols tbody td:nth-child(38) { background-color: var(--tint-ingapu) !important; }
+
+.township-cols tbody td:nth-child(10),
+.township-cols tbody td:nth-child(14),
+.township-cols tbody td:nth-child(27),
+.township-cols tbody td:nth-child(31),
+.township-cols tbody td:nth-child(35),
+.township-cols tbody td:nth-child(39) { background-color: var(--tint-total) !important; }
+
+.township-cols tbody tr:hover td:nth-child(7),
+.township-cols tbody tr:hover td:nth-child(11),
+.township-cols tbody tr:hover td:nth-child(15),
+.township-cols tbody tr:hover td:nth-child(18),
+.township-cols tbody tr:hover td:nth-child(21),
+.township-cols tbody tr:hover td:nth-child(24),
+.township-cols tbody tr:hover td:nth-child(28),
+.township-cols tbody tr:hover td:nth-child(32),
+.township-cols tbody tr:hover td:nth-child(36) { background-color: var(--tint-myanaung-hover) !important; }
+
+.township-cols tbody tr:hover td:nth-child(8),
+.township-cols tbody tr:hover td:nth-child(12),
+.township-cols tbody tr:hover td:nth-child(16),
+.township-cols tbody tr:hover td:nth-child(19),
+.township-cols tbody tr:hover td:nth-child(22),
+.township-cols tbody tr:hover td:nth-child(25),
+.township-cols tbody tr:hover td:nth-child(29),
+.township-cols tbody tr:hover td:nth-child(33),
+.township-cols tbody tr:hover td:nth-child(37) { background-color: var(--tint-kyankhin-hover) !important; }
+
+.township-cols tbody tr:hover td:nth-child(9),
+.township-cols tbody tr:hover td:nth-child(13),
+.township-cols tbody tr:hover td:nth-child(17),
+.township-cols tbody tr:hover td:nth-child(20),
+.township-cols tbody tr:hover td:nth-child(23),
+.township-cols tbody tr:hover td:nth-child(26),
+.township-cols tbody tr:hover td:nth-child(30),
+.township-cols tbody tr:hover td:nth-child(34),
+.township-cols tbody tr:hover td:nth-child(38) { background-color: var(--tint-ingapu-hover) !important; }
+
+.township-cols tbody tr:hover td:nth-child(10),
+.township-cols tbody tr:hover td:nth-child(14),
+.township-cols tbody tr:hover td:nth-child(27),
+.township-cols tbody tr:hover td:nth-child(31),
+.township-cols tbody tr:hover td:nth-child(35),
+.township-cols tbody tr:hover td:nth-child(39) { background-color: var(--tint-total-hover) !important; }
+
+.distribution-table tbody td:nth-child(8),
+.distribution-table tbody td:nth-child(11),
+.distribution-table tbody td:nth-child(14) { background-color: var(--tint-myanaung) !important; }
+
+.distribution-table tbody td:nth-child(9),
+.distribution-table tbody td:nth-child(12),
+.distribution-table tbody td:nth-child(15) { background-color: var(--tint-kyankhin) !important; }
+
+.distribution-table tbody td:nth-child(10),
+.distribution-table tbody td:nth-child(13),
+.distribution-table tbody td:nth-child(16) { background-color: var(--tint-ingapu) !important; }
+
+.distribution-table tbody tr:hover td:nth-child(8),
+.distribution-table tbody tr:hover td:nth-child(11),
+.distribution-table tbody tr:hover td:nth-child(14) { background-color: var(--tint-myanaung-hover) !important; }
+
+.distribution-table tbody tr:hover td:nth-child(9),
+.distribution-table tbody tr:hover td:nth-child(12),
+.distribution-table tbody tr:hover td:nth-child(15) { background-color: var(--tint-kyankhin-hover) !important; }
+
+.distribution-table tbody tr:hover td:nth-child(10),
+.distribution-table tbody tr:hover td:nth-child(13),
+.distribution-table tbody tr:hover td:nth-child(16) { background-color: var(--tint-ingapu-hover) !important; }
+

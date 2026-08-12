@@ -42,7 +42,8 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'super',
+            // Public registration is always admin — never super
+            'role' => 'admin',
         ]);
 
         event(new Registered($user));

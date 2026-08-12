@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="{{ asset('image/logo.jpg') }}">
 
-    <title>DERAS - Resource Allocation System</title>
+    <title>DERAS - Resource Allocation and Distribution System</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="{{ asset('css/deras-tokens.css') }}?v=1" rel="stylesheet">
 
     <style>
         body,
@@ -35,6 +36,40 @@
         table,
         a {
             font-family: 'Noto Sans Myanmar', 'Pyidaungsu', 'Myanmar Text', sans-serif !important;
+        }
+
+        /* Myanmar text in selects / filter inputs — avoid clipping */
+        select,
+        select.modern-select,
+        select.form-control,
+        input.modern-input,
+        input.form-control,
+        .form-control,
+        .modern-select,
+        .modern-input {
+            line-height: 1.8 !important;
+        }
+
+        select.modern-select,
+        select.form-control,
+        select {
+            min-height: 44px;
+            padding-top: 0.55rem !important;
+            padding-bottom: 0.55rem !important;
+            height: auto !important;
+        }
+
+        input.modern-input,
+        input.form-control:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]) {
+            min-height: 44px;
+            padding-top: 0.55rem !important;
+            padding-bottom: 0.55rem !important;
+            height: auto !important;
+        }
+
+        select option {
+            line-height: 1.8;
+            padding: 0.4rem 0.5rem;
         }
 
         .fa,
@@ -57,7 +92,7 @@
             height: 100vh;
             overflow-y: auto;
             z-index: 1000;
-            background: linear-gradient(180deg, #072a1e 0%, #0d3d2e 45%, #051c14 100%);
+            background: linear-gradient(180deg, var(--deras-forest) 0%, var(--deras-pine) 45%, var(--deras-deep) 100%);
             box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
             scrollbar-width: thin;
             scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
@@ -89,7 +124,7 @@
             height: 64px;
             object-fit: cover;
             border-radius: 50%;
-            border: 2.5px solid #d4af37;
+            border: 2.5px solid var(--deras-gold);
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 0 4px rgba(212,175,55,0.15);
             background: #fff;
             flex-shrink: 0;
@@ -103,7 +138,7 @@
         .brand-title {
             font-size: 28px;
             font-weight: 900;
-            color: #f59e0b;
+            color: var(--deras-amber);
             letter-spacing: 3px;
             line-height: 1;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245,158,11,0.3);
@@ -134,7 +169,7 @@
             min-width: 24px;
             font-size: 16px;
             margin-right: 12px;
-            color: #34d399;
+            color: var(--deras-mint);
             text-align: center;
             transition: transform 0.2s ease;
         }
@@ -147,12 +182,12 @@
 
         .sidebar .nav-item .nav-link:hover {
             background: rgba(255, 255, 255, 0.12) !important;
-            color: #fbbf24 !important;
+            color: var(--deras-amber-light) !important;
             transform: translateX(3px);
         }
 
         .sidebar .nav-item .nav-link:hover i.main-icon {
-            color: #fbbf24;
+            color: var(--deras-amber-light);
             transform: scale(1.1);
         }
 
@@ -163,7 +198,7 @@
 
         .sidebar .nav-item .nav-link:not(.collapsed) .chevron-icon {
             transform: rotate(180deg);
-            color: #fbbf24;
+            color: var(--deras-amber-light);
         }
 
         .chevron-icon {
@@ -227,7 +262,7 @@
             min-width: 22px !important;
             margin-right: 10px !important;
             font-size: 14px !important;
-            color: #34d399 !important;
+            color: var(--deras-mint) !important;
             text-align: center !important;
             flex-shrink: 0 !important;
         }
@@ -236,14 +271,14 @@
         #accordionSidebar .nav-item .collapse .collapse-inner .collapse-item.active,
         #accordionSidebar .nav-item .collapse .collapse-inner .collapse-item.active-item {
             background: rgba(16, 185, 129, 0.25) !important;
-            color: #fbbf24 !important;
+            color: var(--deras-amber-light) !important;
             padding-left: 16px !important;
         }
 
         #accordionSidebar .nav-item .collapse .collapse-inner .collapse-item:hover i,
         #accordionSidebar .nav-item .collapse .collapse-inner .collapse-item.active i,
         #accordionSidebar .nav-item .collapse .collapse-inner .collapse-item.active-item i {
-            color: #fbbf24 !important;
+            color: var(--deras-amber-light) !important;
         }
 
         /* Global Button Overrides: Edit (Blue) and Delete (Red) with Hover & Click Effect */
@@ -344,6 +379,13 @@
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
         }
 
+        /* Form create/edit headers → match index (forest, no gold bar) */
+        .card-header.bg-success {
+            background-color: var(--deras-forest) !important;
+            background-image: none !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+        }
+
         /* Default Tables & Modern Table Overrides */
         .default-table {
             border-collapse: collapse;
@@ -354,7 +396,7 @@
         }
 
         .default-table th {
-            background: linear-gradient(180deg, #0d3d2e 0%, #072a1e 100%) !important;
+            background: linear-gradient(180deg, var(--deras-pine) 0%, var(--deras-forest) 100%) !important;
             color: #ffffff !important;
             border: 1px solid rgba(255, 255, 255, 0.2) !important;
             padding: 12px 14px !important;
@@ -407,10 +449,78 @@
             background-color: #f0fdf4 !important;
             border-radius: 8px !important;
         }
+
+        .topbar-page-title {
+            max-width: calc(100% - 200px);
+        }
+
+        .topbar-breadcrumb-list {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 0.5rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            min-width: 0;
+        }
+
+        .topbar-breadcrumb-list > li {
+            display: inline-flex;
+            align-items: center;
+            min-width: 0;
+        }
+
+        .topbar-crumb-sep {
+            color: #94a3b8;
+            font-size: 0.65rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+
+        .topbar-crumb-muted {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .topbar-crumb-current {
+            color: #334155;
+            font-size: 0.95rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* SweetAlert delete confirm */
+        .deras-swal-popup {
+            border-radius: 18px !important;
+            padding: 1.5rem 1.25rem 1.25rem !important;
+            font-family: 'Noto Sans Myanmar', 'Pyidaungsu', 'Myanmar Text', sans-serif !important;
+        }
+
+        .deras-swal-title {
+            font-size: 1.2rem !important;
+            font-weight: 700 !important;
+            color: #0f172a !important;
+        }
+
+        .deras-swal-confirm {
+            border-radius: 12px !important;
+            font-weight: 700 !important;
+            padding: 0.65rem 1.15rem !important;
+        }
+
+        .deras-swal-cancel {
+            border-radius: 12px !important;
+            font-weight: 600 !important;
+            padding: 0.65rem 1.15rem !important;
+        }
     </style>
 
     <link href="{{ asset('admin_folder/css/sb-admin-2.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/position_fixed.css') }}?v=3" rel="stylesheet">
+    <link href="{{ asset('css/position_fixed.css') }}?v=18" rel="stylesheet">
+    <link href="{{ asset('css/deras-validation.css') }}?v=1" rel="stylesheet">
 
     {{-- FIXED LAYOUT: sidebar & topbar always stay in place regardless of scroll --}}
     <style>
@@ -612,7 +722,114 @@
             <div id="content">
                 <!-- Modern Topbar Navbar -->
                 <nav class="mb-4 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/80 navbar navbar-expand navbar-light topbar topbar-fixed px-4">
-                    <ul class="ml-auto navbar-nav align-items-center">
+                    @php
+                        $path = request()->path();
+                        $pageParent = null;
+                        $pageTitle = 'DERAS';
+                        $pageIcon = 'fa-file-alt';
+
+                        if (request()->is('/')) {
+                            $pageTitle = 'ဒက်ရှ်ဘုတ်';
+                            $pageIcon = 'fa-chart-line';
+                        } elseif (request()->is('allocation-plans*')) {
+                            $pageParent = 'ပြဌာန်းစာအုပ်';
+                            $pageTitle = 'ခွဲတမ်းတွက်ချက်မှု';
+                            $pageIcon = 'fa-calculator';
+                        } elseif (request()->is('textbook*')) {
+                            $pageParent = 'ပြဌာန်းစာအုပ်';
+                            $pageTitle = 'ပုံမှန်ဖြန့်ဝေစာရင်း';
+                            $pageIcon = 'fa-book';
+                        } elseif (request()->is('stocks*')) {
+                            $pageParent = 'ပြဌာန်းစာအုပ်';
+                            $pageTitle = 'ထပ်ဆောင်းဖြန့်ဝေစာရင်း';
+                            $pageIcon = 'fa-truck';
+                        } elseif (request()->is('quota*')) {
+                            $pageTitle = 'ကျောင်းသားဦးရေတွက်ချက်မှု';
+                            $pageIcon = 'fa-calculator';
+                        } elseif (request()->is('school-supplies*')) {
+                            $pageParent = 'သင်ထောက်ကူပစ္စည်းများ';
+                            $pageTitle = 'ခွဲတမ်းတွက်ချက်မှု';
+                            $pageIcon = 'fa-boxes';
+                        } elseif (request()->is('supply-details*')) {
+                            $pageParent = 'သင်ထောက်ကူပစ္စည်းများ';
+                            $pageTitle = 'ထုတ်ပေးမှု';
+                            $pageIcon = 'fa-hand-holding';
+                        } elseif (request()->is('teacher-guides*')) {
+                            $pageParent = 'ဆရာကိုင်နှင့်လမ်းညွှန်';
+                            $pageTitle = 'လက်ခံရရှိမှု';
+                            $pageIcon = 'fa-inbox';
+                        } elseif (request()->is('teacher-guide-distributions*')) {
+                            $pageParent = 'ဆရာကိုင်နှင့်လမ်းညွှန်';
+                            $pageTitle = 'ဖြန့်ဝေရန်ခွဲတမ်း';
+                            $pageIcon = 'fa-share-alt';
+                        } elseif (request()->is('teacher-guide-issues*')) {
+                            $pageParent = 'ဆရာကိုင်နှင့်လမ်းညွှန်';
+                            $pageTitle = 'ဖြန့်ဝေစာရင်း';
+                            $pageIcon = 'fa-list';
+                        } elseif (request()->is('teacher-guide-summaries*')) {
+                            $pageParent = 'ဆရာကိုင်နှင့်လမ်းညွှန်';
+                            $pageTitle = 'စာရင်းချုပ်';
+                            $pageIcon = 'fa-clipboard-list';
+                        } elseif (request()->is('townships*')) {
+                            $pageParent = 'အခြေခံအချက်အလက်များ';
+                            $pageTitle = 'မြို့နယ်များ';
+                            $pageIcon = 'fa-map-marker-alt';
+                        } elseif (request()->is('academic-years*')) {
+                            $pageParent = 'အခြေခံအချက်အလက်များ';
+                            $pageTitle = 'ပညာသင်နှစ်များ';
+                            $pageIcon = 'fa-calendar-alt';
+                        } elseif (request()->is('grades*')) {
+                            $pageParent = 'အခြေခံအချက်အလက်များ';
+                            $pageTitle = 'အတန်းများ';
+                            $pageIcon = 'fa-layer-group';
+                        } elseif (request()->is('book-names*')) {
+                            $pageParent = 'အခြေခံအချက်အလက်များ';
+                            $pageTitle = 'ဘာသာရပ်များ';
+                            $pageIcon = 'fa-book-open';
+                        } elseif (request()->is('company-contacts*')) {
+                            $pageParent = 'အခြေခံအချက်အလက်များ';
+                            $pageTitle = 'ကုမ္ပဏီများ';
+                            $pageIcon = 'fa-building';
+                        } elseif (request()->is('admin-users*')) {
+                            $pageTitle = 'စီမံခန့်ခွဲသူများစာရင်း';
+                            $pageIcon = 'fa-users';
+                        } elseif (request()->is('profile*')) {
+                            $pageTitle = 'ကိုယ်ရေးအချက်အလက်';
+                            $pageIcon = 'fa-user';
+                        } elseif (request()->is('password*')) {
+                            $pageTitle = 'စကားဝှက်ပြောင်းရန်';
+                            $pageIcon = 'fa-lock';
+                        }
+
+                        $pageAction = null;
+                        if (str_ends_with($path, '/create') || $path === 'create') {
+                            $pageAction = 'ဖန်တီးရန်';
+                        } elseif (preg_match('#/(?:\d+|[^/]+)/edit$#', $path)) {
+                            $pageAction = 'ပြင်ဆင်ရန်';
+                        }
+                    @endphp
+
+                    <div class="d-flex align-items-center flex-grow-1 min-w-0 me-3 topbar-page-title">
+                        <nav class="topbar-breadcrumb text-truncate" aria-label="လက်ရှိစာမျက်နှာ">
+                            <ol class="topbar-breadcrumb-list">
+                                @if ($pageParent)
+                                    <li>
+                                        <span class="topbar-crumb-muted">{{ $pageParent }}</span>
+                                    </li>
+                                    <li class="topbar-crumb-sep" aria-hidden="true">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </li>
+                                @endif
+                                <li>
+                                    <span class="topbar-crumb-current">
+                                        {{ $pageTitle }}@if ($pageAction) · {{ $pageAction }}@endif
+                                    </span>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <ul class="ml-auto navbar-nav align-items-center flex-shrink-0">
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#"
                                 id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -675,6 +892,8 @@
     <script src="{{ asset('admin_folder/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('admin_folder/js/sb-admin-2.min.js') }}"></script>
 
+    <script src="{{ asset('js/deras-form.js') }}"></script>
+    <script src="{{ asset('js/deras-validation.js') }}?v=10"></script>
     <script>
         const Toast = Swal.mixin({
             toast: true,
@@ -716,6 +935,46 @@
             });
         @endif
 
+        /**
+         * Pretty SweetAlert confirm for all DELETE forms.
+         */
+        document.addEventListener('submit', function (event) {
+            var form = event.target;
+            if (!(form instanceof HTMLFormElement)) return;
+
+            var methodInput = form.querySelector('input[name="_method"]');
+            var isDelete = methodInput && String(methodInput.value).toUpperCase() === 'DELETE';
+            if (!isDelete || form.dataset.derasConfirmed === '1') return;
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            Swal.fire({
+                title: 'ဖျက်ရန် သေချာပါသလား?',
+                html: '<p style="margin:0;color:#64748b;font-size:0.95rem;line-height:1.6;">ဤအချက်အလက်ကို ဖျက်လိုက်ပါက<br><strong style="color:#dc2626;">ပြန်လည်ရယူ၍ မရနိုင်ပါ။</strong></p>',
+                icon: 'warning',
+                showCancelButton: true,
+                focusCancel: true,
+                reverseButtons: true,
+                confirmButtonText: '<i class="fas fa-trash-alt me-1"></i> ဖျက်မည်',
+                cancelButtonText: 'မလုပ်တော့ပါ',
+                confirmButtonColor: '#dc2626',
+                cancelButtonColor: '#64748b',
+                buttonsStyling: true,
+                customClass: {
+                    popup: 'deras-swal-popup',
+                    title: 'deras-swal-title',
+                    confirmButton: 'deras-swal-confirm',
+                    cancelButton: 'deras-swal-cancel'
+                }
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    form.dataset.derasConfirmed = '1';
+                    form.submit();
+                }
+            });
+        }, true);
+
         // Restore accordion state
         $(function() {
             const lastMenu = localStorage.getItem('sidebarMenu');
@@ -736,7 +995,42 @@
                 });
         });
     </script>
-    <script src="{{ asset('js/deras-form.js') }}"></script>
+    <script>
+        /**
+         * Ctrl+- zoom out → allow full-width layout (no max-w-7xl cap).
+         * 100% zoom → keep original centered max-w-7xl layout.
+         */
+        (function () {
+            function isBrowserZoomedOut() {
+                var screenW = window.screen && window.screen.availWidth
+                    ? window.screen.availWidth
+                    : window.screen.width;
+                if (!screenW) return false;
+                return (window.innerWidth / screenW) > 1.08;
+            }
+
+            function syncZoomLayout() {
+                document.documentElement.classList.toggle(
+                    'deras-zoomed-out',
+                    isBrowserZoomedOut()
+                );
+            }
+
+            var timer = null;
+            function scheduleSync() {
+                clearTimeout(timer);
+                timer = setTimeout(syncZoomLayout, 50);
+            }
+
+            window.addEventListener('resize', scheduleSync);
+            if (window.visualViewport) {
+                window.visualViewport.addEventListener('resize', scheduleSync);
+            }
+            document.addEventListener('DOMContentLoaded', syncZoomLayout);
+            window.addEventListener('load', syncZoomLayout);
+            syncZoomLayout();
+        })();
+    </script>
     @yield('script-code')
 </body>
 

@@ -137,8 +137,7 @@
                                         <form method="POST" action="{{ route('teacher-guide-summaries.destroy', $row->id) }}" class="d-inline m-0">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn-modern-danger" title="ဖျက်ပါ"
-                                                onclick="return confirm('ဖျက်ရန်?')">
+                                            <button class="btn-modern-danger" title="ဖျက်ပါ">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
@@ -148,7 +147,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="11" class="py-4 text-muted">Data မရှိသေးပါ။</td>
+                            <td colspan="11" class="py-4 text-muted">အချက်အလက် မရှိသေးပါ။</td>
                         </tr>
                     @endforelse
                 </tbody>
