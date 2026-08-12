@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    /* Modern Container & Layout */
+    .app-page-container {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6;
+    }
+
+    /* Modern Card Components */
+    .modern-card {
+        @apply bg-white rounded-2xl border border-slate-200/80 shadow-sm shadow-slate-200/50 overflow-hidden transition-all duration-200;
+    }
+    
+    .modern-card-header {
+        @apply px-6 py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b shadow-sm;
+        background: linear-gradient(135deg, #ecfdf5 0%, #e6f4ea 100%);
+        border-bottom-color: #a7f3d0;
+    }
+
+    .modern-card-header-title {
+        @apply text-base font-bold tracking-wide flex items-center gap-2.5 m-0;
+        color: #065f46;
+    }
+
+    .modern-card-body {
+        @apply p-5 sm:p-6 text-slate-700;
+    }
+
+    /* Filter Card Component */
+    .filter-card {
+        @apply bg-white rounded-2xl border border-slate-200/90 shadow-sm shadow-slate-100 p-5 mb-6 transition-all duration-200;
+    }
+
+    .filter-card-title {
+        @apply text-xs font-bold uppercase tracking-wider text-slate-500 mb-3.5 flex items-center gap-2;
+    }
+
+    .modern-select {
+        @apply w-full rounded-xl border border-slate-300 bg-white py-2.5 px-3.5 text-sm text-slate-700 shadow-sm transition-all font-medium;
+        border: 1px solid #cbd5e1 !important;
+    }
+
+    .modern-select:focus {
+        border: 2px solid #105c3a !important;
+        background-color: #ffffff !important;
+        box-shadow: 0 0 0 3px rgba(16, 92, 58, 0.2) !important;
+        outline: none !important;
+    }
+
+    .modern-input {
+        @apply w-full rounded-xl border border-slate-300 bg-white py-2.5 px-3.5 text-sm text-slate-700 shadow-sm transition-all font-medium placeholder:text-slate-400;
+        border: 1px solid #cbd5e1 !important;
+    }
+
+    .modern-input:focus {
+        border: 2px solid #105c3a !important;
+        background-color: #ffffff !important;
+        box-shadow: 0 0 0 3px rgba(16, 92, 58, 0.2) !important;
+        outline: none !important;
+    }
+
+    /* Modern Table Styling */
+    .modern-table-container {
+        @apply rounded-2xl border border-slate-200 overflow-x-auto shadow-sm bg-white mb-6;
+        scrollbar-width: thin;
+        scrollbar-color: #94a3b8 #f1f5f9;
+        border-top-left-radius: 12px !important;
+        border-top-right-radius: 12px !important;
+        overflow-x: auto !important;
+    }
+
+    .modern-table-container::-webkit-scrollbar {
+        height: 10px;
+    }
+
+    .modern-table-container::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 8px;
+    }
+
+    .modern-table-container::-webkit-scrollbar-thumb {
+        background: #94a3b8;
+        border-radius: 8px;
+        border: 2px solid #f1f5f9;
+    }
+
+    .modern-table-container::-webkit-scrollbar-thumb:hover {
+        background: #64748b;
+    }
+
+    .modern-table {
+        @apply w-full border-collapse text-sm text-slate-700;
+    }
+
+    .modern-table thead {
+        @apply bg-gradient-to-r from-emerald-900 via-emerald-800 to-slate-900 text-white text-xs uppercase tracking-wider font-semibold;
+    }
+
+    .modern-table th {
+        @apply px-4 py-3.5 border-b border-emerald-950/40 text-center font-bold align-middle whitespace-nowrap text-emerald-50 bg-emerald-900/95;
+    }
+
+    .modern-table tbody tr {
+        @apply border-b border-slate-100 transition-colors duration-150 ease-in-out;
+    }
+
+    .modern-table td {
+        @apply px-4 py-3.5 text-center align-middle text-slate-700 font-medium;
+    }
+
+    /* Modern Buttons */
+    .btn-modern-primary {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 text-white text-sm font-semibold rounded-xl shadow-sm hover:shadow transition-all duration-200 border-0 cursor-pointer no-underline;
+        background-color: #105c3a;
+        text-decoration: none !important;
+    }
+    .btn-modern-primary:hover {
+        background-color: #0d4d30;
+        text-decoration: none !important;
+        color: #ffffff;
+    }
+
+    .btn-modern-secondary {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-700 text-sm font-semibold rounded-xl shadow-sm transition-all duration-200 cursor-pointer;
+        text-decoration: none !important;
+        border: 1px solid #cbd5e1 !important;
+    }
+    .btn-modern-secondary:hover {
+        text-decoration: none !important;
+        border-color: #94a3b8 !important;
+        color: #0f172a !important;
+    }
+
+    .btn-modern-excel {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 text-white text-sm font-semibold rounded-xl shadow-sm hover:shadow transition-all duration-200 border-0 cursor-pointer no-underline;
+        background-color: #0d6efd;
+        text-decoration: none !important;
+    }
+    .btn-modern-excel:hover {
+        background-color: #0b5ed7;
+        text-decoration: none !important;
+        color: #ffffff;
+    }
+
+    .btn-modern-warning, .btn-action-edit {
+        @apply inline-flex items-center justify-center w-8 h-8 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs font-semibold rounded-lg shadow-sm transition-all duration-200 border-0 cursor-pointer no-underline shrink-0;
+        text-decoration: none !important;
+    }
+    .btn-modern-warning:hover, .btn-action-edit:hover {
+        text-decoration: none !important;
+        color: #ffffff;
+        transform: translateY(-2px) scale(1.08);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    }
+    .btn-modern-warning:active, .btn-action-edit:active {
+        transform: translateY(0) scale(0.95);
+    }
+
+    .btn-modern-danger, .btn-action-delete {
+        @apply inline-flex items-center justify-center w-8 h-8 bg-rose-600 hover:bg-rose-700 active:bg-rose-800 text-white text-xs font-semibold rounded-lg shadow-sm transition-all duration-200 border-0 cursor-pointer no-underline shrink-0;
+        text-decoration: none !important;
+    }
+    .btn-modern-danger:hover, .btn-action-delete:hover {
+        text-decoration: none !important;
+        color: #ffffff;
+        transform: translateY(-2px) scale(1.08);
+        box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+    }
+    .btn-modern-danger:active, .btn-action-delete:active {
+        transform: translateY(0) scale(0.95);
+    }
+
+    /* Badges */
+    .badge-active {
+        @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80 shadow-sm;
+    }
+
+    .badge-inactive {
+        @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200/80 shadow-sm;
+    }
+    /* Year label - green, adjustable font size */
+    .label-year-select {
+        display: block;
+        font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+        font-weight: 600;
+        color: #105c3a;
+        margin-bottom: 0.25rem;
+    }
+}
+
+/* Specific Table Header & Table Layout Styling */
+.table-responsive {
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+    overflow-x: auto !important;
+}
+
+.quota-table thead th, .modern-table thead th, .table thead th {
+    background-color: #072a1e !important;
+    background-image: none !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    font-size: 15px !important;
+}
+
+/* Global table borders & font sizes across entire project */
+table, .table, .modern-table, .default-table {
+    border-collapse: collapse !important;
+}
+
+table th, .table th, .modern-table th, .default-table th {
+    font-size: 15px !important;
+    border: 1px solid #cbd5e1 !important;
+    vertical-align: middle !important;
+}
+
+table td, .table td, .modern-table td, .default-table td {
+    font-size: 14px !important;
+    border: 1px solid #cbd5e1 !important;
+    vertical-align: middle !important;
+}
+
+.table thead tr:first-child th:first-child,
+.modern-table thead tr:first-child th:first-child {
+    border-top-left-radius: 12px !important;
+}
+
+.table thead tr:first-child th:last-child,
+.modern-table thead tr:first-child th:last-child {
+    border-top-right-radius: 12px !important;
+}
+
+/* nth table row green tint */
+.table-striped tbody tr:nth-of-type(even),
+.modern-table tbody tr:nth-of-type(even) {
+    background-color: #f0fdf4 !important; /* Gentle emerald / green tint */
+}
+
+.table-striped tbody tr:nth-of-type(odd),
+.modern-table tbody tr:nth-of-type(odd) {
+    background-color: #ffffff !important;
+}
+
+.quota-table tbody tr:hover,
+.table tbody tr:hover,
+.modern-table tbody tr:hover {
+    background-color: #d1fae5 !important; /* Soft green hover highlight */
+}
+
+.quota-table tfoot tr td {
+    background-color: #d1fae5 !important;
+    color: #047857 !important;
+    font-weight: 700 !important;
+    border: 1px solid #a7f3d0 !important;
+}
+
+

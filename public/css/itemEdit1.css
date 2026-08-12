@@ -1,0 +1,555 @@
+.item-edit-wrapper{
+padding:30px 15px;
+
+display:flex;
+justify-content:center;
+
+}
+
+.item-card{
+width:100%;
+max-width:850px;
+
+background:#fff;
+
+border-radius:16px;
+
+border:1px solid #dceee3;
+
+overflow:hidden;
+
+box-shadow:
+    0 8px 24px rgba(16,92,58,.08);
+
+}
+
+/* ====================================
+HEADER
+==================================== */
+
+.card-header{
+background:linear-gradient(
+    135deg,
+    #d5e9dc,
+    #c5dfcf
+);
+border-bottom: 1px solid #105c3a;
+
+padding:18px 24px;
+
+}
+
+.header-left{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.header-icon{
+width:48px;
+height:48px;
+
+border-radius:12px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:#b8d7c6;
+backdrop-filter: blur(6px);
+
+color: #105c3a;
+font-size:24px;
+
+}
+
+.header-text h3{
+margin:0;
+
+color:#105c3a;
+font-size:24px;
+font-weight:700;
+
+}
+
+/* ====================================
+BODY
+==================================== */
+
+.card-body{
+padding:24px;
+background:#fcfffd;
+}
+
+/* ====================================
+GRID
+==================================== */
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+}
+
+/* ====================================
+LABEL
+==================================== */
+
+.form-group{
+margin-bottom:18px;
+}
+
+.form-group label{
+display:block;
+
+margin-bottom:7px;
+
+color:#105c3a;
+
+font-size:16px;
+font-weight:700;
+
+}
+
+.required{
+color:#ef4444;
+}
+
+/* ====================================
+INPUT
+==================================== */
+
+.form-control{
+width:100%;
+
+height:46px;
+
+border:1px solid #cfe3d7;
+
+border-radius:10px;
+
+background:#fff;
+
+font-size: 15px;
+
+padding:0 14px;
+
+transition:.25s;
+
+}
+
+.form-control:focus{
+outline:none;
+
+border-color:#105c3a;
+
+box-shadow:
+    0 0 0 4px rgba(16,92,58,.10);
+
+}
+
+textarea.form-control{
+height:auto;
+min-height:110px;
+
+padding:12px 14px;
+
+resize:vertical;
+
+}
+
+/* ====================================
+READONLY
+==================================== */
+
+.readonly-input{
+background:#edf8f1 !important;
+
+border:1px solid #c3dfcd !important;
+
+color:#105c3a !important;
+
+font-weight:600;
+
+cursor:not-allowed;
+
+}
+
+/* ====================================
+STATUS
+==================================== */
+
+.status-toggle{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.toggle-label{
+position:relative;
+
+width:58px;
+height:30px;
+
+border-radius:50px;
+
+background:#cfd8d3;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.toggle-circle{
+position:absolute;
+
+top:4px;
+left:4px;
+
+width:22px;
+height:22px;
+
+background:#fff;
+
+border-radius:50%;
+
+transition:.3s;
+
+box-shadow:
+    0 2px 6px rgba(0,0,0,.15);
+
+}
+
+#status:checked + .toggle-label{
+background:#105c3a;
+}
+
+#status:checked + .toggle-label .toggle-circle{
+transform:translateX(28px);
+}
+
+.status-text{
+font-size:15px;
+font-weight:600;
+
+color:#105c3a;
+
+}
+
+/* ====================================
+BUTTONS
+==================================== */
+
+.action-buttons{
+margin-top:25px;
+
+display:flex;
+justify-content:flex-end;
+gap:10px;
+
+}
+
+.btn-save,
+.btn-cancel{
+min-width:140px;
+
+padding:11px 18px;
+
+border-radius:10px;
+
+font-size:16px;
+font-weight:600;
+
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+
+transition:.25s;
+
+text-decoration:none;
+
+}
+
+/* SAVE */
+
+.btn-save{
+background:#105c3a;
+color:#fff;
+
+border:1px solid #105c3a;
+
+}
+
+.btn-save:hover{
+background:#d5e9dc;
+color:#105c3a;
+}
+
+/* CANCEL */
+
+.btn-cancel{
+background:#fff;
+color:#105c3a;
+
+border:1px solid #105c3a;
+
+}
+
+.btn-cancel:hover{
+background:#105c3a;
+color:#fff;
+}
+/* ================= ERROR MESSAGE ================= */
+
+/* Error Text */
+.error-text {
+    color: #e3342f;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 5px;
+    display: none;
+    line-height: 1.3;
+}
+
+/* Error Input Style */
+.error-input {
+    border-color: #e3342f !important;
+    background-color: #fff5f5 !important;
+}
+
+.error-input:focus {
+    border-color: #e3342f !important;
+    box-shadow: 0 0 0 3px rgba(227, 52, 47, 0.1) !important;
+}
+
+/* Select Error */
+select.error-input {
+    border-color: #e3342f !important;
+    background-color: #fff5f5 !important;
+}
+/* Textarea Error */
+textarea.error-input {
+    border-color: #e3342f !important;
+    background-color: #fff5f5 !important;
+}
+
+/* ===============================
+LARGE TABLET / SMALL LAPTOP
+=============================== */
+@media (max-width: 1200px){
+
+    .item-card{
+        max-width: 760px;
+    }
+
+}
+
+/* ===============================
+TABLET
+=============================== */
+@media (max-width: 992px){
+
+    .item-edit-wrapper{
+        padding:25px 12px;
+    }
+
+    .card-header{
+        padding:16px 20px;
+    }
+
+    .card-body{
+        padding:20px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .header-text h3{
+        font-size:22px;
+    }
+
+}
+
+/* ===============================
+LARGE MOBILE
+=============================== */
+@media (max-width: 768px){
+
+    .item-edit-wrapper{
+        padding:20px 10px;
+    }
+
+    .item-card{
+        border-radius:14px;
+    }
+
+    .card-header{
+        padding:15px 18px;
+    }
+
+    .card-body{
+        padding:18px;
+    }
+
+    .header-icon{
+        width:42px;
+        height:42px;
+        font-size:20px;
+    }
+
+    .header-text h3{
+        font-size:20px;
+    }
+
+    .form-group label{
+        font-size:15px;
+    }
+
+    .form-control{
+        height:44px;
+        font-size:14px;
+    }
+
+    textarea.form-control{
+        min-height:100px;
+    }
+
+    .action-buttons{
+        flex-direction:column;
+    }
+
+    .btn-save,
+    .btn-cancel{
+        width:100%;
+        min-width:unset;
+    }
+
+}
+
+/* ===============================
+MOBILE
+=============================== */
+@media (max-width: 576px){
+
+    .item-edit-wrapper{
+        padding:15px 8px;
+    }
+
+    .card-header{
+        padding:14px;
+    }
+
+    .card-body{
+        padding:14px;
+    }
+
+    .header-left{
+        gap:10px;
+    }
+
+    .header-icon{
+        width:38px;
+        height:38px;
+        font-size:18px;
+        border-radius:10px;
+    }
+
+    .header-text h3{
+        font-size:18px;
+        line-height:1.4;
+    }
+
+    .form-group{
+        margin-bottom:15px;
+    }
+
+    .form-group label{
+        font-size:14px;
+    }
+
+    .form-control{
+        height:42px;
+        font-size:14px;
+        padding:0 12px;
+    }
+
+    textarea.form-control{
+        padding:10px 12px;
+        min-height:90px;
+    }
+
+    .status-toggle{
+        gap:10px;
+    }
+
+    .status-text{
+        font-size:14px;
+    }
+
+    .toggle-label{
+        width:54px;
+        height:28px;
+    }
+
+    .toggle-circle{
+        width:20px;
+        height:20px;
+    }
+
+    #status:checked + .toggle-label .toggle-circle{
+        transform:translateX(26px);
+    }
+
+}
+
+/* ===============================
+SMALL MOBILE
+=============================== */
+@media (max-width: 400px){
+
+    .item-edit-wrapper{
+        padding:10px 6px;
+    }
+
+    .item-card{
+        border-radius:12px;
+    }
+
+    .card-header{
+        padding:12px;
+    }
+
+    .card-body{
+        padding:12px;
+    }
+
+    .header-left{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+    }
+
+    .header-text h3{
+        font-size:16px;
+    }
+
+    .form-group label{
+        font-size:13px;
+    }
+
+    .form-control{
+        height:40px;
+        font-size:13px;
+    }
+
+    .btn-save,
+    .btn-cancel{
+        padding:10px 14px;
+        font-size:14px;
+    }
+
+}

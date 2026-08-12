@@ -1,0 +1,518 @@
+.supplier-list-wrapper{
+    padding:24px;
+}
+
+.list-card{
+    background:#fff;
+
+    border:1px solid #e3ebe6;
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 4px 18px rgba(16,92,58,.05);
+}
+
+/* ==================================
+   HEADER
+================================== */
+
+.card-header{
+    padding:20px 24px;
+
+    background:#fff;
+    border-bottom:1px solid #e7ece9;
+}
+
+.header-content{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+}
+
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.header-icon{
+    width:48px;
+    height:48px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:14px;
+
+    background:#edf7f1;
+    color:#105c3a;
+
+    border:1px solid #d8e8df;
+
+    font-size:24px;
+}
+
+.header-text h3{
+    font-size:24px;
+    font-weight:700;
+    color:#105c3a;
+
+    margin:0;
+}
+
+.header-text p{
+    font-size:13px;
+    color:#6b7280;
+    margin:2px 0 0;
+}
+
+/* ==================================
+   ADD BUTTON
+================================== */
+
+.btn-add-new{
+    height:45px;
+
+    padding:10px 14px 10px 14px;
+    font-size: 16px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#105c3a;
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.btn-add-new:hover{
+    background:#fff;
+    color: #105c3a;
+    border: 1px solid #105c3a;
+}
+
+/* ==================================
+   BODY
+================================== */
+
+.card-body{
+    padding:20px 24px;
+}
+
+/* ==================================
+   FILTER SECTION
+================================== */
+
+.filter-section{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:16px;
+    margin-bottom:16px;
+}
+
+/* search */
+.search-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:0 15px;
+
+    border:1px solid #d5e0d9;
+    border-radius:10px;
+
+    background:#fff;
+
+    height:45px;
+
+    min-width:380px;
+    max-width: 420px;
+    transition: .2s ease;
+}
+.search-box:focus-within{
+    border-color: #105c3a;
+    box-shadow: 0 0 0 4px rgba(16,92,58,.12);
+}
+.search-box i{
+    color:#105c3a;
+}
+
+.search-box input{
+    border:none;
+    outline:none;
+
+    width:100%;
+
+    font-size:14px;
+}
+
+/* filter group */
+.filter-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.filter-select{
+    height:45px;
+
+    border:1px solid #d5e0d9;
+    border-radius:10px;
+
+    padding:0 15px;
+
+    outline:none;
+}
+
+/* filter buttons */
+.btn-filter,
+.btn-reset{
+    height:45px;
+
+    padding:0 16px;
+
+    border-radius:10px;
+    font-size: 16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    transition:.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.btn-filter{
+    background:#105c3a;
+    border:1px solid #105c3a;
+    color:#fff;
+}
+
+.btn-filter:hover{
+    background:#0d4c30;
+    border-color: #0d4c30;
+    box-shadow: 0 4px 12px rgba(16,92,58,.25);
+}
+
+.btn-reset{
+    background:#fff;
+    border:2px solid #105c3a;
+    color:#105c3a;
+}
+
+.btn-reset:hover{
+    background:#f3f4f6;
+}
+
+/* ==================================
+   TABLE
+================================== */
+
+.table-responsive{
+    border:1px solid #e3ebe6;
+    border-radius:14px;
+
+    overflow:auto;
+
+    box-shadow:0 2px 10px rgba(16,92,58,.04);
+}
+
+.suppliers-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+/* header */
+.suppliers-table thead th{
+    position:sticky;
+    top:0;
+
+    background:#f4faf6;
+    color:#105c3a;
+
+    font-weight:700;
+    font-size:16px;
+
+    padding:14px 12px;
+
+    border-bottom:1px solid #dfe8e2;
+}
+
+/* body */
+.suppliers-table tbody td{
+    padding:12px;
+
+    border-bottom:1px solid #edf2ef;
+
+    font-size:14px;
+    color:#1f2937;
+}
+
+.suppliers-table tbody tr:hover{
+    background:#fafdfb;
+}
+
+/* ==================================
+   BADGE
+================================== */
+
+.supplier-type-badge{
+    padding:4px 10px;
+
+    border-radius:999px;
+
+    font-size:14px;
+    font-weight:600;
+}
+/* ==================================
+   ACTION BUTTONS
+================================== */
+
+.action-buttons{
+    display:flex;
+    gap:8px;
+}
+
+.btn-edit,
+.btn-delete{
+    width:34px;
+    height:34px;
+
+    border:none;
+    border-radius:8px;
+
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:.2s;
+}
+
+/* edit */
+.btn-edit{
+    background:#e0f2fe;
+    color:#0369a1;
+}
+
+.btn-edit:hover{
+    background:#0284c7;
+    color: #fff;
+}
+
+/* delete */
+.btn-delete{
+    background:#fef2f2;
+    color:#dc2626;
+}
+
+.btn-delete:hover{
+    background:#dc2626;
+    color:#fff;
+}
+/* ==================================
+   1200px DOWN
+================================== */
+@media (max-width:1200px){
+
+    .supplier-list-wrapper{
+        padding:20px;
+    }
+
+    .card-body{
+        padding:18px 20px;
+    }
+
+    .header-text h3{
+        font-size:18px;
+    }
+
+    .header-text p{
+        font-size:12px;
+    }
+
+    .search-box{
+        min-width:320px;
+    }
+}
+
+/* ==================================
+   992px DOWN (TABLET)
+================================== */
+@media (max-width:992px){
+
+    .header-content{
+        flex-wrap:wrap;
+        gap:12px;
+    }
+
+    .filter-section{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .search-box{
+        width:100%;
+        min-width:unset;
+    }
+
+    .filter-box{
+        flex-wrap:wrap;
+        justify-content:flex-start;
+    }
+
+    .table-responsive{
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+    }
+
+    .suppliers-table{
+        min-width:900px;
+    }
+
+    .btn-add-new{
+        height:38px;
+        font-size:14px;
+    }
+}
+
+/* ==================================
+   768px DOWN (SMALL TABLET)
+================================== */
+@media (max-width:768px){
+
+    .supplier-list-wrapper{
+        padding:14px;
+    }
+
+    .card-header{
+        padding:16px;
+    }
+
+    .card-body{
+        padding:14px;
+    }
+
+    .header-icon{
+        width:42px;
+        height:42px;
+        font-size:18px;
+    }
+
+    .header-text h3{
+        font-size:16px;
+    }
+
+    .header-text p{
+        font-size:11px;
+    }
+
+    .btn-add-new{
+        width:100%;
+        justify-content:center;
+    }
+
+    .btn-filter,
+    .btn-reset{
+        height:38px;
+        font-size:13px;
+    }
+
+    .search-box{
+        height:38px;
+        width:100%;
+    }
+}
+
+/* ==================================
+   576px DOWN (MOBILE)
+================================== */
+@media (max-width:576px){
+
+    .header-content{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .header-right{
+        width:100%;
+    }
+
+    .btn-add-new{
+        width:100%;
+    }
+
+    .filter-box{
+        flex-direction:column;
+        width:100%;
+    }
+
+    .filter-select{
+        width:100%;
+    }
+
+    .btn-filter,
+    .btn-reset{
+        width:100%;
+        justify-content:center;
+    }
+
+    .search-box{
+        width:100%;
+    }
+
+    /* prevent button text wrap */
+    .btn-add-new,
+    .btn-filter,
+    .btn-reset{
+        white-space:nowrap;
+    }
+}
+
+/* ==================================
+   400px DOWN (SMALL MOBILE)
+================================== */
+@media (max-width:400px){
+
+    .header-text h3{
+        font-size:14px;
+    }
+
+    .suppliers-table thead th,
+    .suppliers-table tbody td{
+        font-size:12px;
+        padding:10px 8px;
+    }
+
+    .btn-edit,
+    .btn-delete{
+        width:30px;
+        height:30px;
+    }
+
+    /* optional tighten buttons */
+    .btn-add-new,
+    .btn-filter,
+    .btn-reset{
+        padding:0 10px;
+        font-size:12px;
+    }
+}

@@ -1,0 +1,193 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\TeacherGuide;
+use App\Models\TeacherGuideSummary;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\View\View;
+
+class TeacherGuideSummaryController extends Controller
+{
+    public function index(Request $request): View
+    {
+        $yearId = $request->integer('academic_year_id') ?: null;
+        $gradeId = $request->integer('grade_id') ?: null;
+        $guideType = $request->string('guide_type')->toString();
+        $search = trim($request->string('search')->toString());
+
+        $query = TeacherGuideSummary::query()
+            ->with(['academicYear', 'grade', 'bookName']);
+
+        if ($yearId) {
+            $query->where('academic_year_id', $yearId);
+        }
+
+        if ($gradeId) {
+            $query->where('grade_id', $gradeId);
+        }
+
+        if ($guideType !== '') {
+            $query->where('guide_type', $guideType);
+        }
+
+        if ($search !== '') {
+            $query->where(function ($q) use ($search) {
+                $q->where('group_title', 'like', "%{$search}%")
+                    ->orWhereHas(
+                        'bookName',
+                        fn ($bookQuery) => $bookQuery->where('name', 'like', "%{$search}%")
+                    );
+            });
+        }
+
+        $summaries = $query
+            ->orderBy('group_no')
+            ->orderBy('sequence_no')
+            ->get();
+
+        $years = AcademicYear::where('is_active', true)->orderBy('name')->get();
+        $grades = Grade::dropdownOptions();
+        $selectedYear = $yearId ? AcademicYear::find($yearId) : null;
+
+        return view('teacher-guide-summaries.index', compact(
+            'summaries',
+            'years',
+            'grades',
+            'yearId',
+            'gradeId',
+            'guideType',
+            'search',
+            'selectedYear'
+        ));
+    }
+
+    public function create(): View
+    {
+        return view('teacher-guide-summaries.create', $this->formOptions());
+    }
+
+    public function store(Request $request): RedirectResponse
+    {
+        $data = $this->validatedData($request);
+
+        if (empty($data['group_no'])) {
+            $data['group_no'] = (TeacherGuideSummary::max('group_no') ?? 0) + 1;
+        }
+        if (empty($data['sequence_no'])) {
+            $data['sequence_no'] = (TeacherGuideSummary::max('sequence_no') ?? 0) + 1;
+        }
+
+        $data = $this->calculateTotals($data);
+
+        TeacherGuideSummary::create($data);
+
+        return redirect()
+            ->route('teacher-guide-summaries.index')
+            ->with('success', 'စာရင်းချုပ်အသစ် ဖန်တီးပြီးပါပြီ။');
+    }
+
+    public function edit(TeacherGuideSummary $teacherGuideSummary): View
+    {
+        $teacherGuideSummary->load('bookName');
+
+        return view('teacher-guide-summaries.edit', array_merge(
+            $this->formOptions(),
+            ['teacherGuideSummary' => $teacherGuideSummary]
+        ));
+    }
+
+    public function update(Request $request, TeacherGuideSummary $teacherGuideSummary): RedirectResponse
+    {
+        $data = $this->validatedData($request, $teacherGuideSummary);
+        $data = $this->calculateTotals($data);
+
+        $teacherGuideSummary->update($data);
+
+        return redirect()
+            ->route('teacher-guide-summaries.index')
+            ->with('success', 'စာရင်းချုပ် ပြင်ဆင်ပြီးပါပြီ။');
+    }
+
+    public function destroy(TeacherGuideSummary $teacherGuideSummary): RedirectResponse
+    {
+        $teacherGuideSummary->delete();
+
+        return redirect()
+            ->route('teacher-guide-summaries.index')
+            ->with('success', 'စာရင်းချုပ် ဖျက်ပြီးပါပြီ။');
+    }
+
+    private function formOptions(): array
+    {
+        return [
+            'years' => AcademicYear::where('is_active', true)->orderBy('name')->get(),
+            'grades' => Grade::dropdownOptions(),
+        ];
+    }
+
+    private function validatedData(
+        Request $request,
+        ?TeacherGuideSummary $teacherGuideSummary = null
+    ): array {
+        $data = $request->validate([
+            'academic_year_id' => ['required', 'exists:academic_years,id'],
+            'grade_id' => ['required', 'exists:grades,id'],
+            'book_name_id' => ['required', 'exists:book_names,id'],
+            'guide_type' => [
+                'required',
+                Rule::in(['ဆရာကိုင်', 'ဆရာလမ်းညွှန်']),
+            ],
+            'previous_balance' => ['nullable', 'integer', 'min:0'],
+            'fiscal_year_quota' => ['nullable', 'integer', 'min:0'],
+            'distributed_books' => ['nullable', 'integer', 'min:0'],
+            'remark' => ['nullable', 'string', 'max:2000'],
+        ]);
+
+        $data['previous_balance'] = (int) ($data['previous_balance'] ?? 0);
+        $quota = TeacherGuide::query()
+            ->where('academic_year_id', $data['academic_year_id'])
+            ->where('grade_id', $data['grade_id'])
+            ->where('book_name_id', $data['book_name_id'])
+            ->where('guide_type', $data['guide_type'])
+            ->orderByDesc('id')
+            ->first();
+
+        // ဘဏ္ဍာရေးနှစ်ခွဲတမ်း ← လက်ခံရရှိမှု ခရိုင်ရရှိခွဲတမ်း (total_quota)
+        $data['fiscal_year_quota'] = $quota
+            ? (int) ($quota->total_quota ?? 0)
+            : (int) ($data['fiscal_year_quota'] ?? 0);
+
+        // ဖြန့်ဝေပြီးအုပ်ရေ ← ဖြန့်ဝေရန်ခွဲတမ်း distributed_total
+        $data['distributed_books'] = $quota
+            ? (int) ($quota->distributed_total ?? 0)
+            : (int) ($data['distributed_books'] ?? 0);
+
+        $gradeName = Grade::where('id', $data['grade_id'])->value('name');
+        $data['group_title'] = $quota?->group_title
+            ?? ($gradeName . "\n(" . $data['guide_type'] . ')');
+
+        if ($quota) {
+            $data['group_no'] = $quota->group_no;
+            $data['sequence_no'] = $quota->sequence_no;
+        }
+
+        return $data;
+    }
+
+    private function calculateTotals(array $data): array
+    {
+        $previous = (int) ($data['previous_balance'] ?? 0);
+        $quota = (int) ($data['fiscal_year_quota'] ?? 0);
+        $distributed = (int) ($data['distributed_books'] ?? 0);
+
+        $data['total_books'] = $previous + $quota;
+        $data['remaining_books'] = $data['total_books'] - $distributed;
+
+        return $data;
+    }
+}

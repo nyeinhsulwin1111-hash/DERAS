@@ -1,0 +1,741 @@
+:root{
+--primary:#105c3a;
+--primary-dark:#0b4a2e;
+--primary-light:#edf7f1;
+
+--success:#198754;
+--success-bg:#dff5e8;
+
+--text:#374151;
+--border:#e5e7eb;
+
+--white:#ffffff;
+
+--shadow:
+    0 10px 25px rgba(0,0,0,.06);
+
+}
+
+/* ==================================================
+WRAPPER
+================================================== */
+
+.category-wrapper{
+width:92%;
+max-width:1200px;
+margin:40px auto;
+}
+
+/* ==================================================
+CARD
+================================================== */
+
+.category-card,
+.table-card{
+background:var(--white);
+border-radius:18px;
+box-shadow:var(--shadow);
+overflow:hidden;
+}
+
+.category-card{
+padding: 30px;
+margin-bottom:70px;
+}
+
+/* ==================================================
+HEADER
+================================================== */
+
+.card-header{
+background:linear-gradient(
+135deg,
+var(--primary),
+#17734a
+);
+padding:20px 25px;
+margin: 0px 30px;
+}
+
+.card-header h4{
+margin:0;
+color:#fff;
+display:flex;
+align-items:center;
+gap:10px;
+font-size:24px;
+font-weight:700;
+}
+
+/* ==================================================
+FORM
+================================================== */
+
+/* .form-grid{
+    display: grid;
+    grid-template-columns: repeat(2,minmac(0,1fr));
+    margin: 0px 30px;
+    gap: 8px 30px;
+    align-items: stretch;
+}
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.form-group input {
+    height: 46px;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+}
+
+
+.form-group textarea {
+    height: 46px;
+    min-height: 46px;
+    max-height: 46px;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+
+    resize: none;
+    overflow-y: hidden;
+
+}
+
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #157347;
+    box-shadow: 0 0 0 2px rgba(21, 115, 71, 0.15);
+}
+
+.form-group label{
+    color: #105c3a;
+    font-weight: 700;
+}
+
+.form-group span{
+    color: #dc2626;
+} */
+
+.form-grid.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0px 30px;
+    gap: 8px 30px;
+    align-items: stretch;
+}
+
+/* make both same height feel */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* INPUT STYLE */
+.form-group input {
+    height: 46px;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+}
+
+/* TEXTAREA */
+.form-group textarea {
+    height: 46px;
+    min-height: 46px;
+    max-height: 46px;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+
+    resize: none;
+    overflow-y: hidden;
+
+}
+
+/* optional hover focus */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #157347;
+    box-shadow: 0 0 0 2px rgba(21, 115, 71, 0.15);
+}
+
+.form-group label{
+    color: #105c3a;
+    font-weight: 700;
+}
+
+.form-group span{
+    color: #dc2626;
+}
+/*
+
+/*
+==================================================
+ACTION BUTTONS
+================================================== */
+
+.action-buttons {
+    margin: 30px;
+    display: flex;
+    justify-content: end;
+    gap: 15px;
+
+}
+
+.save-btn {
+    background: #105c3a;
+    color: white;
+    border: 1px solid #105c3a;
+    border-radius: 8px;
+    padding: 8px 18px;
+    transition: 0.2s;
+}
+
+.save-btn:hover {
+    background: white;
+    color: #105c3a;
+    border: 2px solid #105c3a;
+}
+
+.add-row-btn {
+    background: #105c3a;
+    color: white;
+    border: 1px solid #105c3a;
+    border-radius: 8px;
+    padding: 8px 18px;
+    transition: 0.2s;
+}
+
+.add-row-btn:hover {
+    background: white;
+    color: #105c3a;
+    border: 2px solid #105c3a;
+}
+
+.cancel-btn {
+    background: white;
+    color: #105c3a;
+    border: 2px solid #105c3a;
+    border-radius: 8px;
+    padding: 8px 18px;
+    transition: 0.2s;
+}
+
+.cancel-btn:hover {
+    background: #105c3a;
+    color: white;
+}
+
+.action-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.action-btn,
+.action-icons button {
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s;
+}
+
+/* EDIT */
+
+.edit-btn {
+    color: #d97706;
+    background: #fef3c7;
+}
+
+.edit-btn:hover {
+    background: #facc15;
+    transform: translateY(-2px);
+    /* background:#105c3a; */
+    color: white;
+}
+
+/* DELETE */
+
+.delete-btn {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.delete-btn:hover {
+    transform: translateY(-2px);
+    background: #dc2626;
+    color: white;
+}
+
+.form-row{
+    position: relative;
+    padding-top: 50px;
+}
+
+.remove-btn{
+    position: absolute;
+    top: 6px;
+    right: 8px;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    outline: none;
+    border-radius: 50%;
+
+    background: #fee2e2;
+    color: #dc2626;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.remove-btn:hover{
+    background: #dc2626;
+    color: white;
+    transform: scale(1.05);
+}
+
+.remove-btn i{
+    font-size: 13px;
+}
+
+/* ==================================================
+TABLE CARD
+================================================== */
+
+.table-card{
+margin-top:30px;
+}
+
+.table-header{
+padding:24px;
+border-bottom:1px solid var(--border);
+}
+
+.table-header h4{
+margin:0 0 25px;
+color:var(--primary);
+font-size:24px;
+font-weight:700;
+}
+
+/* ==================================================
+FILTER BAR
+================================================== */
+
+.filter-bar{
+display:grid;
+grid-template-columns:
+2fr
+1fr
+1fr
+1fr
+auto;
+gap:14px;
+}
+
+.search-box{
+position:relative;
+}
+
+.search-box i{
+position:absolute;
+top:50%;
+left:14px;
+transform:translateY(-50%);
+color:var(--primary);
+}
+
+.search-box input{
+width:100%;
+height:48px;
+padding-left:42px;
+border:1px solid var(--border);
+border-radius:12px;
+}
+
+.filter-input{
+width:100%;
+height:48px;
+border:1px solid var(--border);
+border-radius:12px;
+padding:0 12px;
+}
+
+.search-box input:focus,
+.filter-input:focus{
+outline:none;
+border-color:var(--primary);
+}
+
+.filter-btn{
+height:48px;
+border:none;
+border-radius:12px;
+background:var(--primary);
+color:#fff;
+padding:0 20px;
+cursor:pointer;
+font-weight:600;
+}
+
+.filter-btn:hover{
+background:var(--primary-dark);
+}
+
+/* ==================================================
+TABLE
+================================================== */
+
+.table-responsive{
+overflow-x:auto;
+padding: 24px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+thead{
+background:var(--primary-light);
+}
+
+thead th{
+padding:18px 15px;
+text-align:left;
+color:var(--primary);
+font-weight:700;
+font-size:15px;
+}
+
+tbody td{
+padding:18px 15px;
+border-top:1px solid #f1f5f9;
+color:var(--text);
+vertical-align:middle;
+font-size: 14px;
+}
+
+tbody tr{
+transition:.3s;
+}
+
+tbody tr:hover{
+background:#f9fcfa;
+}
+
+/* =========================
+   STATUS TOGGLE
+========================= */
+
+.status-toggle{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 50px;
+}
+
+.toggle-label{
+    width: 58px;
+    height: 30px;
+    background: #cbd5e1;
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.toggle-circle{
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    transition: 0.3s;
+}
+
+#status:checked + .toggle-label{
+    background: #105c3a;
+}
+
+#status:checked + .toggle-label .toggle-circle{
+    left: 30px;
+}
+
+.status-text{
+    font-weight: 600;
+    color: #105c3a;
+    transition: 0.3s;
+}
+
+/* ==================== VALIDATION ERROR STYLES ==================== */
+
+/* Error message text */
+.error-text {
+    color: #dc2626;
+    font-size: 14px;
+    margin-top: 10px;
+    display: block;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+/* Highlight input/textarea with red border */
+.form-group:has(.error-text:not(:empty)) input,
+.form-group:has(.error-text:not(:empty)) textarea,
+.form-group:has(.error-text:not(:empty)) select {
+    border-color: #dc2626 !important;
+    background-color: #fef2f2;
+    transition: all 0.2s ease;
+}
+
+/* shake animation on error */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+}
+
+.form-group:has(.error-text:not(:empty)) input,
+.form-group:has(.error-text:not(:empty)) textarea {
+    animation: shake 0.2s ease-in-out 0s 2;
+}
+
+/* Focus state for error fields */
+.form-group:has(.error-text:not(:empty)) input:focus,
+.form-group:has(.error-text:not(:empty)) textarea:focus {
+    outline: none;
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* Make sure error text doesn't break the grid layout on small screens */
+@media (max-width: 768px) {
+    .error-text {
+        font-size: 0.7rem;
+    }
+}
+
+.status-badge {
+    padding: 7px 14px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+.active-badge {
+    background: rgba(25, 135, 84, 0.12);
+
+    color: #198754;
+}
+/* ==================================================
+RESPONSIVE
+================================================== */
+
+/* ================= LARGE DESKTOP ================= */
+@media (min-width: 1400px) {
+    .category-wrapper {
+        max-width: 1300px;
+    }
+
+    .card-header h4 {
+        font-size: 26px;
+    }
+
+    .form-grid.two-column {
+        gap: 12px 40px;
+    }
+}
+
+/* ================= DESKTOP / LAPTOP ================= */
+@media (max-width: 1200px) {
+    .category-wrapper {
+        width: 94%;
+    }
+
+    .form-grid.two-column {
+        gap: 10px 25px;
+    }
+
+    .card-header {
+        margin: 0 20px;
+    }
+
+    .action-buttons {
+        margin: 25px 20px;
+    }
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 992px) {
+
+    .category-wrapper {
+        width: 95%;
+    }
+
+    .form-grid.two-column {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 20px;
+    }
+
+    .filter-bar {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .action-buttons {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .save-btn,
+    .cancel-btn,
+    .add-row-btn {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+    .category-wrapper {
+        width: 100%;
+        padding: 0 12px;
+        margin: 25px auto;
+    }
+
+    .category-card,
+    .table-card {
+        border-radius: 14px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+        margin: 0 12px;
+    }
+
+    .card-header h4 {
+        font-size: 18px;
+        line-height: 1.4;
+    }
+
+    .form-grid.two-column {
+        grid-template-columns: 1fr;
+        margin: 0 12px;
+        gap: 14px;
+    }
+
+    .form-row {
+        padding-top: 55px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        margin: 20px 12px;
+        gap: 12px;
+    }
+
+    .save-btn,
+    .cancel-btn,
+    .add-row-btn {
+        width: 100%;
+    }
+
+    .filter-bar {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .table-header h4 {
+        font-size: 20px;
+    }
+
+    .table-responsive {
+        padding: 12px;
+    }
+
+    table {
+        min-width: 700px;
+    }
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 480px) {
+
+    .card-header h4 {
+        font-size: 16px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 13px;
+        padding: 9px;
+    }
+
+    .action-buttons button,
+    .action-buttons a {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+
+    .remove-btn {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* ================= ULTRA SMALL ================= */
+@media (max-width: 360px) {
+
+    .card-header h4 {
+        font-size: 15px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 12px;
+    }
+
+    .action-buttons button,
+    .action-buttons a {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+}

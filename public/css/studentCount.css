@@ -1,0 +1,447 @@
+/* ================= WRAPPER ================= */
+
+.stock-wrapper {
+    padding: 25px;
+    background: #eef2f7;
+    min-height: 100vh;
+}
+
+/* ================= CARD ================= */
+
+.stock-card {
+    background: #ffffff;
+    border-radius: 28px;
+    padding: 35px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.07);
+    border: 1px solid #dde5ee;
+}
+
+/* ================= HEADER ================= */
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 35px;
+    background: #f1f5f9;
+}
+
+.header-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #166534, #105c3a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 24px rgba(34, 197, 94, 0.25);
+}
+
+.header-icon i {
+    color: white;
+    font-size: 25px;
+}
+
+.header-text h3 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 700;
+    color: #105c3a;
+}
+
+/* ================= TOP INFO BOX ================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
+    margin-bottom: 35px;
+    padding: 25px;
+    background: #f8fafc;
+    border: 1px solid #dbe4ee;
+    border-radius: 22px;
+    box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.7);
+}
+
+/* ================= FORM GROUP ================= */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #105c3a;
+}
+
+.form-group label span {
+    color: #ef4444;
+}
+
+/* ================= INPUT DESIGN ================= */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    border: 1px solid #cfd8e3;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 14px 16px;
+    font-size: 15px;
+    color: #111827;
+    transition: all 0.25s ease;
+    outline: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+}
+
+/* ================= INPUT HOVER ================= */
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    border-color: #105c3a;
+    transform: translateY(-1px);
+}
+
+/* ================= INPUT FOCUS ================= */
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.12);
+    transform: translateY(-2px);
+}
+
+/* ================= TEXTAREA ================= */
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+    background: #fcfcfc;
+    outline: none;
+}
+
+/* ================= SECTION STYLE ================= */
+
+.school-type-section,
+.student-section,
+.total-section {
+    margin-bottom: 35px;
+    padding: 25px;
+    border-radius: 22px;
+    border: 1px solid #dbe4ee;
+    background: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+/* ================= SECTION TITLE ================= */
+
+.school-type-section h4,
+.student-section h4 {
+    margin-bottom: 20px;
+    font-size: 19px;
+    font-weight: 700;
+    color: #105c3a;
+    position: relative;
+    padding-left: 14px;
+}
+
+.school-type-section h4::before,
+.student-section h4::before {
+    content: "";
+    width: 5px;
+    height: 24px;
+    background: #105c3a;
+    border-radius: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* ================= CHECKBOX GROUP ================= */
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+/* ================= CHECKBOX ITEM ================= */
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 16px 22px;
+    border-radius: 16px;
+    min-width: 220px;
+    background: #f9fafb;
+    border: 1px solid #dbe4ee;
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.checkbox-item:hover {
+    background: #ecfdf5;
+    border-color: #4ade80;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(34, 197, 94, 0.1);
+}
+
+.checkbox-item input {
+    margin: 0;
+    width: 18px;
+    height: 18px;
+    accent-color: #22c55e;
+    flex-shrink: 0;
+}
+.checkbox-item span {
+    margin: 0;
+    line-height: 1;
+    font-size: 15px;
+    font-weight: 600;
+    color: #374151;
+}
+
+/* ================= STUDENT GRID ================= */
+
+.student-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 22px;
+}
+
+/* ================= GRADE BOX ================= */
+
+.student-grid .form-group {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 16px;
+    transition: all 0.25s ease;
+}
+
+.student-grid .form-group:hover {
+    transform: translateY(-3px);
+    border-color: #facc15;
+    background: #fffef3;
+    box-shadow: 0 8px 18px rgba(250, 204, 21, 0.15);
+}
+
+/* ================= BUTTON AREA ================= */
+
+.action-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: end;
+    gap: 15px;
+}
+
+.save-btn {
+    background: #105c3a;
+    color: white;
+    border: 1px solid #105c3a;
+    border-radius: 8px;
+    padding: 8px 18px;
+    transition: 0.2s;
+}
+
+.save-btn:hover {
+    background: white;
+    color: #105c3a;
+    border: 2px solid #105c3a;
+}
+
+.cancel-btn {
+    background: white;
+    color: #105c3a;
+    border: 2px solid #105c3a;
+    border-radius: 8px;
+    padding: 8px 18px;
+    transition: 0.2s;
+}
+
+.cancel-btn:hover {
+    background: #105c3a;
+    color: white;
+}
+
+/* ================= TOTAL CARD ================= */
+.totalStudentCount {
+    grid-column: span 2;
+
+    background: #ecfdf5;
+
+    border: 2px solid #86efac;
+
+    border-radius: 18px;
+
+    padding: 18px 22px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-height: 110px;
+
+    transition: 0.2s;
+}
+
+.totalStudentCount:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 18px rgba(16, 92, 58, 0.08);
+}
+
+.total-title {
+    font-size: 14px;
+
+    color: #166534;
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+}
+
+.total-value {
+    font-size: 32px;
+
+    font-weight: 800;
+
+    color: #105c3a;
+
+    line-height: 1;
+}
+
+/* ================= REMARK ================= */
+
+.remark-section {
+    margin-top: 25px;
+}
+
+.remark-section h4 {
+    margin-bottom: 20px;
+    font-size: 19px;
+    font-weight: 700;
+    color: #105c3a;
+    position: relative;
+    padding-left: 14px;
+}
+
+.remark-section h4::before {
+    content: "";
+    width: 5px;
+    height: 24px;
+    background: #105c3a;
+    border-radius: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.remark-section textarea {
+    width: 100%;
+    min-height: 140px;
+
+    padding: 15px 18px;
+
+    font-size: 15px;
+    color: #1f2937;
+
+    background: #ffffff;
+
+    border: 2px solid #cbd5e1;
+    border-radius: 12px;
+
+    resize: vertical;
+
+    transition: all 0.3s ease;
+}
+
+.remark-section textarea::placeholder {
+    color: #94a3b8;
+}
+
+.remark-section textarea:focus {
+    outline: none;
+
+    border-color: #16a34a;
+
+    box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.15);
+}
+/* Additional CSS for error styles */
+
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}
+.form-group.has-error select,
+.form-group.has-error input,
+.school-type-section.has-error .checkbox-group,
+.student-section.has-error .student-grid {
+    border: 1px solid #dc3545;
+    border-radius: 4px;
+}
+.form-group.has-error label,
+.school-type-section.has-error h4,
+.student-section.has-error h4 {
+    color: #dc3545;
+}
+.school-type-section.has-error .checkbox-group {
+    background-color: #fff0f0;
+    padding: 8px;
+    border-radius: 4px;
+}
+.student-section.has-error .student-input {
+    border-color: #dc3545;
+}
+
+.error-border {
+    border: 1px solid #dc3545 !important;
+    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25);
+    background-color: #fff8f8;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+    .stock-wrapper {
+        padding: 15px;
+    }
+
+    .stock-card {
+        padding: 22px;
+        border-radius: 22px;
+    }
+
+    .form-grid,
+    .student-grid {
+        grid-template-columns: 1fr;
+    }
+.checkbox-group {
+        flex-direction: column;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

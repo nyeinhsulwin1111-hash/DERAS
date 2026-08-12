@@ -1,0 +1,1161 @@
+﻿@extends('layouts.master')
+
+@section('content')
+    <div class="app-page-container">
+
+        <!-- Main Data Table Card -->
+        <div class="modern-card">
+            <!-- Card Header with solid #072a1e dark green background matching table header TH -->
+            <div class="modern-card-header" style="background: #072a1e !important; background-image: none !important; color: #ffffff !important; border-bottom: 1px solid rgba(255, 255, 255, 0.15);">
+                <h5 class="text-lg font-bold text-white modern-card-header-title">
+                    <i class="fas fa-calculator text-amber-400"></i>
+                    ခရိုင်ခွဲတမ်းတွက်ချက်မှုစာရင်း
+                </h5>
+            </div>
+
+            <div class="p-4 modern-card-body sm:p-6">
+                <form method="GET" action="{{ route('allocation-plans.index') }}" class="m-0">
+
+                    {{-- Top: စာအုပ်ရှာဖွေရန် + actions --}}
+                    <div class="flex flex-wrap items-end justify-between gap-3">
+                        <div class="flex flex-wrap items-end gap-3" style="flex: 1; min-width: 260px;">
+                            <div style="flex: 1; min-width: 220px; max-width: 360px;">
+                                <label class="block text-sm font-extrabold mb-1.5" style="color: #105c3a;">စာအုပ်ရှာဖွေရန်</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                        <i class="fas fa-search" style="color: #16a34a;"></i>
+                                    </span>
+                                    <input type="text" name="search" class="text-sm font-medium modern-input"
+                                        style="padding-left: 2.25rem;"
+                                        value="{{ request('search') }}"
+                                        placeholder="စာအုပ်ရှာရန်...">
+                                </div>
+                            </div>
+
+                            <div class="flex items-end gap-2" style="padding-bottom: 1px;">
+                                <button type="submit" class="btn-modern-primary">
+                                    <i class="fas fa-search"></i>
+                                    စစ်ထုတ်ပါ
+                                </button>
+                                <a href="{{ route('allocation-plans.index') }}" class="btn-modern-secondary">
+                                    <i class="fas fa-redo"></i>
+                                    ပြန်လည်သတ်မှတ်
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-end gap-2" style="padding-bottom: 1px;">
+                            <button type="button" class="btn-modern-excel" onclick="exportAllocationPlan()">
+                                <i class="fas fa-file-excel"></i>
+                                Excel ထုတ်ပါ
+                            </button>
+                            <a href="{{ route('allocation-plans.create') }}" class="btn-modern-primary">
+                                <i class="fas fa-plus"></i>
+                                ဖန်တီးပါ
+                            </a>
+                        </div>
+                    </div>
+
+                    {{-- Bottom: ပညာသင်နှစ် / အတန်း / ဘာသာရပ် --}}
+                    <div class="flex flex-wrap items-end gap-3 pt-3 mt-4 border-t border-slate-100">
+                        <div style="flex: 2; min-width: 160px;">
+                            <label class="block text-sm font-extrabold mb-1.5" style="color: #105c3a;">ပညာသင်နှစ်</label>
+                            <select name="academic_year_id" class="text-sm font-medium modern-select">
+                                <option value="">ပညာသင်နှစ်ရွေးချယ်ပါ</option>
+                                @foreach ($years as $year)
+                                    <option value="{{ $year->id }}" {{ $yearId == $year->id ? 'selected' : '' }}>
+                                        {{ $year->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div style="flex: 2; min-width: 160px;">
+                            <label class="block text-sm font-extrabold mb-1.5" style="color: #105c3a;">အတန်း</label>
+                            <select name="grade_id" class="text-sm font-medium modern-select">
+                                <option value="">အတန်းရွေးချယ်ပါ</option>
+                                @foreach ($grades as $grade)
+                                    <option value="{{ $grade->id }}" {{ $gradeId == $grade->id ? 'selected' : '' }}>
+                                        {{ $grade->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div style="flex: 2; min-width: 160px;">
+                            <label class="block text-sm font-extrabold mb-1.5" style="color: #105c3a;">ဘာသာရပ်</label>
+                            <select name="book_name_id" class="text-sm font-medium modern-select">
+                                <option value="">ဘာသာရပ်အမည်ရွေးချယ်ပါ</option>
+                                @foreach ($bookNames as $book)
+                                    <option value="{{ $book->id }}" {{ $bookNameId == $book->id ? 'selected' : '' }}>
+                                        {{ $book->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+                <table class="table text-center align-middle table-bordered table-striped" style="min-width:4200px;">
+                    <thead style="background-color: #072a1e; color: #ffffff;">
+                        <tr>
+                            <th rowspan="2">
+                                စဉ်
+                            </th>
+
+                            <th rowspan="2">
+                                အတန်း
+                            </th>
+
+                            <th rowspan="2">
+                                ဘာသာ
+                            </th>
+
+                            <th rowspan="2">
+                                ရရှိအုပ်ရေ
+                            </th>
+
+                            <th rowspan="2">
+                                တစ်အိတ်ပါ Unit
+                            </th>
+
+                            <th rowspan="2">
+                                အချိုး
+                            </th>
+
+                            <th colspan="4">
+                                ယခင်နှစ်လက်ကျန်စာအုပ်ဖယ်ပြီးကျောင်းသားဦးရေ
+                            </th>
+
+                            <th colspan="4">
+                                ခွဲတမ်းပေးရန်အုပ်အရေအတွက်
+                            </th>
+
+                            <th colspan="3">
+                                ခွဲတမ်းပေးရန်အိတ်
+                            </th>
+
+                            <th colspan="3">
+                                ခွဲတမ်းပေးရန်အပြေအုပ်အရေအတွက်
+                            </th>
+
+                            <th colspan="3">
+                                ယခင်နှစ်လက်ကျန်စာအုပ်
+                            </th>
+
+                            <th colspan="4">
+                                ကျောင်းသားဦးရေ
+                            </th>
+
+                            <th colspan="4">
+                                လက်ဆင့်ကမ်း(အသုံးပြုနိုင်)
+                            </th>
+
+                            <th colspan="4">
+                                ယခင်နှစ်လက်ကျန် + ထုတ်ပေး + လက်ဆင့်ကမ်း
+                            </th>
+
+                            <th colspan="4">
+                                ကျောင်းသားအရအပိုအလို
+                            </th>
+
+                            <th rowspan="2">
+                                လုပ်ဆောင်ချက်
+                            </th>
+                        </tr>
+
+                        <tr>
+                            {{-- Student --}}
+                            <th>
+                                မြန်အောင်
+                            </th>
+
+                            <th>
+                                ကြံခင်း
+                            </th>
+
+                            <th>
+                                အင်္ဂပူ
+                            </th>
+
+                            <th>
+                                စုစုပေါင်း
+                            </th>
+
+                            {{-- Allocation Book --}}
+                            <th>
+                                မြန်အောင်
+                            </th>
+
+                            <th>
+                                ကြံခင်း
+                            </th>
+
+                            <th>
+                                အင်္ဂပူ
+                            </th>
+
+                            <th>
+                                စုစုပေါင်း
+                            </th>
+
+                            {{-- Package --}}
+                            <th>
+                                မြန်အောင်
+                            </th>
+
+                            <th>
+                                ကြံခင်း
+                            </th>
+
+                            <th>
+                                အင်္ဂပူ
+                            </th>
+
+                            {{-- Loose --}}
+                            <th>
+                                မြန်အောင်
+                            </th>
+
+                            <th>
+                                ကြံခင်း
+                            </th>
+
+                            <th>
+                                အင်္ဂပူ
+                            </th>
+
+                            {{-- Remaining --}}
+                            <th>
+                                မြန်အောင်
+                            </th>
+
+                            <th>
+                                ကြံခင်း
+                            </th>
+
+                            <th>
+                                အင်္ဂပူ
+                            </th>
+
+                            {{-- Student Count --}}
+                            <th>
+                                မြန်အောင်
+                            </th>
+
+                            <th>
+                                ကြံခင်း
+                            </th>
+
+                            <th>
+                                အင်္ဂပူ
+                            </th>
+
+                            <th>
+                                စုစုပေါင်း
+                            </th>
+
+                            {{-- Transferable --}}
+                            <th>
+                                မြန်အောင်
+                            </th>
+
+                            <th>
+                                ကြံခင်း
+                            </th>
+
+                            <th>
+                                အင်္ဂပူ
+                            </th>
+
+                            <th>
+                                စုစုပေါင်း
+                            </th>
+
+                            {{-- လက+ထုတ်ပေး+လက်ဆင့်ကမ်း --}}
+                            <th>
+                                မြန်အောင်
+                            </th>
+
+                            <th>
+                                ကြံခင်း
+                            </th>
+
+                            <th>
+                                အင်္ဂပူ
+                            </th>
+
+                            <th>
+                                စုစုပေါင်း
+                            </th>
+
+                            {{-- ကျောင်းသားအရအပိုအလို --}}
+                            <th>
+                                မြန်အောင်
+                            </th>
+
+                            <th>
+                                ကြံခင်း
+                            </th>
+
+                            <th>
+                                အင်္ဂပူ
+                            </th>
+
+                            <th>
+                                စုစုပေါင်း
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @forelse($plans as $key => $plan)
+                            <tr>
+                                <td>
+                                    {{ $key + 1 }}
+                                </td>
+
+                                <td>
+                                    {{ $plan->grade->name ?? '' }}
+                                </td>
+
+                                <td>
+                                    {{ $plan->bookName->name ?? '' }}
+                                </td>
+
+                                <td>
+                                    {{ number_format($plan->received_books ?? 0) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format($plan->books_per_package ?? 0) }}
+                                </td>
+
+                                {{-- အချိုး = ရရှိအုပ်ရေ ÷ ယခင်နှစ်လက်ကျန်စာအုပ်ဖယ်ပြီးကျောင်းသားဦးရေပေါင်း --}}
+                                <td>
+                                    @php
+                                        $eligibleStudents =
+                                            ($plan->detail->myanaung_total_students ?? 0) -
+                                            (($plan->detail->myanaung_previous ?? 0) +
+                                                ($plan->detail->myanaung_transferable ?? 0)) +
+                                            (($plan->detail->kyankhin_total_students ?? 0) -
+                                                (($plan->detail->kyankhin_previous ?? 0) +
+                                                    ($plan->detail->kyankhin_transferable ?? 0))) +
+                                            (($plan->detail->ingapu_total_students ?? 0) -
+                                                (($plan->detail->ingapu_previous ?? 0) +
+                                                    ($plan->detail->ingapu_transferable ?? 0)));
+                                    @endphp
+
+                                    {{ $eligibleStudents > 0 ? number_format(($plan->received_books ?? 0) / $eligibleStudents, 2) : 0 }}
+                                </td>
+
+                                {{-- ယခင်နှစ်လက်ကျန်စာအုပ်ဖယ်ပြီးကျောင်းသားဦးရေ = ကျောင်းသားဦးရေ - (ယခင်နှစ်လက်ကျန်စာအုပ် + လက်ဆင့်ကမ်းအသုံးပြုနိုင်) --}}
+                                <td>
+                                    {{ number_format(
+                                        ($plan->detail->myanaung_total_students ?? 0) -
+                                            (($plan->detail->myanaung_previous ?? 0) + ($plan->detail->myanaung_transferable ?? 0)),
+                                    ) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format(
+                                        ($plan->detail->kyankhin_total_students ?? 0) -
+                                            (($plan->detail->kyankhin_previous ?? 0) + ($plan->detail->kyankhin_transferable ?? 0)),
+                                    ) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format(
+                                        ($plan->detail->ingapu_total_students ?? 0) -
+                                            (($plan->detail->ingapu_previous ?? 0) + ($plan->detail->ingapu_transferable ?? 0)),
+                                    ) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format(
+                                        ($plan->detail->myanaung_total_students ?? 0) -
+                                            (($plan->detail->myanaung_previous ?? 0) + ($plan->detail->myanaung_transferable ?? 0)) +
+                                            (($plan->detail->kyankhin_total_students ?? 0) -
+                                                (($plan->detail->kyankhin_previous ?? 0) + ($plan->detail->kyankhin_transferable ?? 0))) +
+                                            (($plan->detail->ingapu_total_students ?? 0) -
+                                                (($plan->detail->ingapu_previous ?? 0) + ($plan->detail->ingapu_transferable ?? 0))),
+                                    ) }}
+                                </td>
+
+                                {{-- ခွဲတမ်းပေးရန်အုပ်အရေအတွက် = အချိုး × ယခင်နှစ်လက်ကျန်စာအုပ်ဖယ်ပြီးကျောင်းသားဦးရေ --}}
+                                @php
+                                    $eligibleMyanaung =
+                                        ($plan->detail->myanaung_total_students ?? 0) -
+                                        (($plan->detail->myanaung_previous ?? 0) +
+                                            ($plan->detail->myanaung_transferable ?? 0));
+
+                                    $eligibleKyankhin =
+                                        ($plan->detail->kyankhin_total_students ?? 0) -
+                                        (($plan->detail->kyankhin_previous ?? 0) +
+                                            ($plan->detail->kyankhin_transferable ?? 0));
+
+                                    $eligibleIngapu =
+                                        ($plan->detail->ingapu_total_students ?? 0) -
+                                        (($plan->detail->ingapu_previous ?? 0) +
+                                            ($plan->detail->ingapu_transferable ?? 0));
+
+                                    $eligibleTotal = $eligibleMyanaung + $eligibleKyankhin + $eligibleIngapu;
+
+                                    $ratio = $eligibleTotal > 0 ? ($plan->received_books ?? 0) / $eligibleTotal : 0;
+                                @endphp
+
+                                <td>
+                                    {{ number_format($ratio * $eligibleMyanaung) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format($ratio * $eligibleKyankhin) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format($ratio * $eligibleIngapu) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format($ratio * $eligibleMyanaung + $ratio * $eligibleKyankhin + $ratio * $eligibleIngapu) }}
+                                </td>
+
+                                {{-- ခွဲတမ်းပေးရန်အိတ်ပြည့် = ခွဲတမ်းပေးရန်အုပ်အရေအတွက် ÷ တစ်အိတ်ပါယူနစ် --}}
+                                @php
+                                    $eligibleMyanaung =
+                                        ($plan->detail->myanaung_total_students ?? 0) -
+                                        (($plan->detail->myanaung_previous ?? 0) +
+                                            ($plan->detail->myanaung_transferable ?? 0));
+
+                                    $eligibleKyankhin =
+                                        ($plan->detail->kyankhin_total_students ?? 0) -
+                                        (($plan->detail->kyankhin_previous ?? 0) +
+                                            ($plan->detail->kyankhin_transferable ?? 0));
+
+                                    $eligibleIngapu =
+                                        ($plan->detail->ingapu_total_students ?? 0) -
+                                        (($plan->detail->ingapu_previous ?? 0) +
+                                            ($plan->detail->ingapu_transferable ?? 0));
+
+                                    $eligibleTotal = $eligibleMyanaung + $eligibleKyankhin + $eligibleIngapu;
+
+                                    $ratio = $eligibleTotal > 0 ? ($plan->received_books ?? 0) / $eligibleTotal : 0;
+
+                                    $allocationMyanaung = $ratio * $eligibleMyanaung;
+                                    $allocationKyankhin = $ratio * $eligibleKyankhin;
+                                    $allocationIngapu = $ratio * $eligibleIngapu;
+
+                                    $unit = $plan->books_per_package ?? 0;
+                                @endphp
+
+                                <td>
+                                    {{ $unit > 0 ? floor($allocationMyanaung / $unit) : 0 }}
+                                </td>
+
+                                <td>
+                                    {{ $unit > 0 ? floor($allocationKyankhin / $unit) : 0 }}
+                                </td>
+
+                                <td>
+                                    {{ $unit > 0 ? floor($allocationIngapu / $unit) : 0 }}
+                                </td>
+
+                                {{-- ခွဲတမ်းပေးရန်အပြေအုပ်အရေအတွက် = ခွဲတမ်းပေးရန်အုပ်အရေအတွက် ÷ တစ်အိတ်ပါယူနစ် (စားကြွင်း) --}}
+                                @php
+                                    $eligibleMyanaung =
+                                        ($plan->detail->myanaung_total_students ?? 0) -
+                                        (($plan->detail->myanaung_previous ?? 0) +
+                                            ($plan->detail->myanaung_transferable ?? 0));
+
+                                    $eligibleKyankhin =
+                                        ($plan->detail->kyankhin_total_students ?? 0) -
+                                        (($plan->detail->kyankhin_previous ?? 0) +
+                                            ($plan->detail->kyankhin_transferable ?? 0));
+
+                                    $eligibleIngapu =
+                                        ($plan->detail->ingapu_total_students ?? 0) -
+                                        (($plan->detail->ingapu_previous ?? 0) +
+                                            ($plan->detail->ingapu_transferable ?? 0));
+
+                                    $eligibleTotal = $eligibleMyanaung + $eligibleKyankhin + $eligibleIngapu;
+
+                                    $ratio = $eligibleTotal > 0 ? ($plan->received_books ?? 0) / $eligibleTotal : 0;
+
+                                    $allocationMyanaung = round($ratio * $eligibleMyanaung);
+                                    $allocationKyankhin = round($ratio * $eligibleKyankhin);
+                                    $allocationIngapu = round($ratio * $eligibleIngapu);
+
+                                    $unit = $plan->books_per_package ?? 0;
+                                @endphp
+
+                                <td>
+                                    {{ $unit > 0 ? $allocationMyanaung % $unit : 0 }}
+                                </td>
+
+                                <td>
+                                    {{ $unit > 0 ? $allocationKyankhin % $unit : 0 }}
+                                </td>
+
+                                <td>
+                                    {{ $unit > 0 ? $allocationIngapu % $unit : 0 }}
+                                </td>
+
+                                {{-- ယခင်နှစ်လက်ကျန်စာအုပ် --}}
+                                <td>
+                                    {{ number_format($plan->detail->myanaung_previous ?? 0) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format($plan->detail->kyankhin_previous ?? 0) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format($plan->detail->ingapu_previous ?? 0) }}
+                                </td>
+
+                                {{-- ကျောင်းသားဦးရေ --}}
+                                <td>
+                                    {{ number_format($plan->detail->myanaung_total_students ?? 0) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format($plan->detail->kyankhin_total_students ?? 0) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format($plan->detail->ingapu_total_students ?? 0) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format(
+                                        ($plan->detail->myanaung_total_students ?? 0) +
+                                            ($plan->detail->kyankhin_total_students ?? 0) +
+                                            ($plan->detail->ingapu_total_students ?? 0),
+                                    ) }}
+                                </td>
+
+                                {{-- လက်ဆင့်ကမ်း(အသုံးပြုနိုင်) --}}
+                                <td>
+                                    {{ number_format($plan->detail->myanaung_transferable ?? 0) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format($plan->detail->kyankhin_transferable ?? 0) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format($plan->detail->ingapu_transferable ?? 0) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format(
+                                        ($plan->detail->myanaung_transferable ?? 0) +
+                                            ($plan->detail->kyankhin_transferable ?? 0) +
+                                            ($plan->detail->ingapu_transferable ?? 0),
+                                    ) }}
+                                </td>
+
+                                {{-- ယခင်နှစ်လက်ကျန် + ထုတ်ပေး + လက်ဆင့်ကမ်း --}}
+                                {{-- Formula = ယခင်နှစ်လက်ကျန်စာအုပ် + ခွဲတမ်းပေးရန်အုပ်အရေအတွက် + လက်ဆင့်ကမ်းအသုံးပြုနိုင် --}}
+                                @php
+                                    $eligibleMyanaung =
+                                        ($plan->detail->myanaung_total_students ?? 0) -
+                                        (($plan->detail->myanaung_previous ?? 0) +
+                                            ($plan->detail->myanaung_transferable ?? 0));
+
+                                    $eligibleKyankhin =
+                                        ($plan->detail->kyankhin_total_students ?? 0) -
+                                        (($plan->detail->kyankhin_previous ?? 0) +
+                                            ($plan->detail->kyankhin_transferable ?? 0));
+
+                                    $eligibleIngapu =
+                                        ($plan->detail->ingapu_total_students ?? 0) -
+                                        (($plan->detail->ingapu_previous ?? 0) +
+                                            ($plan->detail->ingapu_transferable ?? 0));
+
+                                    $eligibleTotal = $eligibleMyanaung + $eligibleKyankhin + $eligibleIngapu;
+
+                                    $ratio = $eligibleTotal > 0 ? ($plan->received_books ?? 0) / $eligibleTotal : 0;
+
+                                    $allocationMyanaung = round($ratio * $eligibleMyanaung);
+                                    $allocationKyankhin = round($ratio * $eligibleKyankhin);
+                                    $allocationIngapu = round($ratio * $eligibleIngapu);
+
+                                    $finalMyanaung =
+                                        ($plan->detail->myanaung_previous ?? 0) +
+                                        $allocationMyanaung +
+                                        ($plan->detail->myanaung_transferable ?? 0);
+
+                                    $finalKyankhin =
+                                        ($plan->detail->kyankhin_previous ?? 0) +
+                                        $allocationKyankhin +
+                                        ($plan->detail->kyankhin_transferable ?? 0);
+
+                                    $finalIngapu =
+                                        ($plan->detail->ingapu_previous ?? 0) +
+                                        $allocationIngapu +
+                                        ($plan->detail->ingapu_transferable ?? 0);
+                                @endphp
+
+                                <td>
+                                    {{ number_format($finalMyanaung) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format($finalKyankhin) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format($finalIngapu) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format($finalMyanaung + $finalKyankhin + $finalIngapu) }}
+                                </td>
+
+                                {{-- ကျောင်းသားအရအပိုအလို = လကထုတ်ပေးလက်ဆင့်ကမ်း - ကျောင်းသားဦးရေ --}}
+                                @php
+                                    $eligibleMyanaung =
+                                        ($plan->detail->myanaung_total_students ?? 0) -
+                                        (($plan->detail->myanaung_previous ?? 0) +
+                                            ($plan->detail->myanaung_transferable ?? 0));
+
+                                    $eligibleKyankhin =
+                                        ($plan->detail->kyankhin_total_students ?? 0) -
+                                        (($plan->detail->kyankhin_previous ?? 0) +
+                                            ($plan->detail->kyankhin_transferable ?? 0));
+
+                                    $eligibleIngapu =
+                                        ($plan->detail->ingapu_total_students ?? 0) -
+                                        (($plan->detail->ingapu_previous ?? 0) +
+                                            ($plan->detail->ingapu_transferable ?? 0));
+
+                                    $eligibleTotal = $eligibleMyanaung + $eligibleKyankhin + $eligibleIngapu;
+
+                                    $ratio = $eligibleTotal > 0 ? ($plan->received_books ?? 0) / $eligibleTotal : 0;
+
+                                    $allocationMyanaung = round($ratio * $eligibleMyanaung);
+                                    $allocationKyankhin = round($ratio * $eligibleKyankhin);
+                                    $allocationIngapu = round($ratio * $eligibleIngapu);
+
+                                    $finalMyanaung =
+                                        ($plan->detail->myanaung_previous ?? 0) +
+                                        $allocationMyanaung +
+                                        ($plan->detail->myanaung_transferable ?? 0);
+
+                                    $finalKyankhin =
+                                        ($plan->detail->kyankhin_previous ?? 0) +
+                                        $allocationKyankhin +
+                                        ($plan->detail->kyankhin_transferable ?? 0);
+
+                                    $finalIngapu =
+                                        ($plan->detail->ingapu_previous ?? 0) +
+                                        $allocationIngapu +
+                                        ($plan->detail->ingapu_transferable ?? 0);
+                                @endphp
+
+                                <td>
+                                    {{ number_format($finalMyanaung - ($plan->detail->myanaung_total_students ?? 0)) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format($finalKyankhin - ($plan->detail->kyankhin_total_students ?? 0)) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format($finalIngapu - ($plan->detail->ingapu_total_students ?? 0)) }}
+                                </td>
+
+                                <td>
+                                    {{ number_format(
+                                        $finalMyanaung -
+                                            ($plan->detail->myanaung_total_students ?? 0) +
+                                            ($finalKyankhin - ($plan->detail->kyankhin_total_students ?? 0)) +
+                                            ($finalIngapu - ($plan->detail->ingapu_total_students ?? 0)),
+                                    ) }}
+                                </td>
+
+                                <td class="whitespace-nowrap">
+                                    <div class="inline-flex items-center gap-1.5 justify-center">
+                                        <a href="{{ route('allocation-plans.edit', $plan->id) }}"
+                                            class="btn-modern-warning" title="ပြင်ဆင်ပါ">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
+
+                                        @if (auth()->user()?->role === 'super')
+                                            <form action="{{ route('allocation-plans.destroy', $plan->id) }}" method="POST"
+                                                class="m-0 d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn-modern-danger" title="ဖျက်ပါ"
+                                                    onclick="return confirm('ဖျက်ရန်သေချာပါသလား?')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        @endif
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="40">
+                                    Data မရှိပါ
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/file-saver/dist/FileSaver.min.js"></script>
+        <script>
+            async function exportAllocationPlan() {
+
+                const plans = @json($plans);
+
+                const workbook = new ExcelJS.Workbook();
+
+                const sheet = workbook.addWorksheet(
+                    'Allocation Plan'
+                );
+
+                sheet.columns = [{
+                        width: 5
+                    },
+                    {
+                        width: 15
+                    },
+                    {
+                        width: 25
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                    {
+                        width: 12
+                    },
+                ];
+
+                // Title
+                sheet.mergeCells(
+                    'A1:AN1'
+                );
+
+                sheet.getCell('A1').value =
+                    'ခရိုင်ခွဲတမ်းတွက်ချက်မှုစာရင်း';
+
+
+                sheet.getCell('A1').font = {
+                    bold: true,
+                    size: 14
+                };
+
+                sheet.getCell('A1').alignment = {
+                    horizontal: 'center'
+                };
+
+                // Header Row 1
+                sheet.mergeCells('A3:A4');
+                sheet.mergeCells('B3:B4');
+                sheet.mergeCells('C3:C4');
+                sheet.mergeCells('D3:D4');
+                sheet.mergeCells('E3:E4');
+                sheet.mergeCells('F3:F4');
+
+                sheet.mergeCells('G3:J3');
+                sheet.mergeCells('K3:N3');
+                sheet.mergeCells('O3:Q3');
+                sheet.mergeCells('R3:T3');
+                sheet.mergeCells('U3:W3');
+                sheet.mergeCells('X3:AA3');
+                sheet.mergeCells('AB3:AE3');
+                sheet.mergeCells('AF3:AI3');
+
+                sheet.getRow(3).values = [
+
+                    'စဉ်',
+                    'အတန်း',
+                    'ဘာသာ',
+                    'ရရှိအုပ်ရေ',
+                    'တစ်အိတ်ပါ Unit',
+                    'အချိုး',
+
+                    'ယခင်နှစ်လက်ကျန်စာအုပ်ဖယ်ပြီးကျောင်းသားဦးရေ',
+                    '',
+                    '',
+                    '',
+
+                    'ခွဲတမ်းပေးရန်အုပ်အရေအတွက်',
+                    '',
+                    '',
+                    '',
+
+                    'ခွဲတမ်းပေးရန်အိတ်',
+                    '',
+                    '',
+
+                    'ခွဲတမ်းပေးရန်အပြေအုပ်အရေအတွက်',
+                    '',
+                    '',
+
+                    'ယခင်နှစ်လက်ကျန်စာအုပ်',
+                    '',
+                    '',
+
+                    'ကျောင်းသားဦးရေ',
+                    '',
+                    '',
+                    '',
+
+                    'လက်ဆင့်ကမ်း(အသုံးပြုနိုင်)',
+                    '',
+                    '',
+                    '',
+
+                    'ယခင်နှစ်လက်ကျန် + ထုတ်ပေး + လက်ဆင့်ကမ်း',
+                    '',
+                    '',
+                    '',
+
+                    'ကျောင်းသားအရအပိုအလို',
+                    '',
+                    '',
+                    '',
+                ];
+
+                sheet.getRow(4).values = [
+
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+
+                    'မြန်အောင်',
+                    'ကြံခင်း',
+                    'အင်္ဂပူ',
+                    'စုစုပေါင်း',
+
+                    'မြန်အောင်',
+                    'ကြံခင်း',
+                    'အင်္ဂပူ',
+                    'စုစုပေါင်း',
+
+                    'မြန်အောင်',
+                    'ကြံခင်း',
+                    'အင်္ဂပူ',
+
+                    'မြန်အောင်',
+                    'ကြံခင်း',
+                    'အင်္ဂပူ',
+
+                    'မြန်အောင်',
+                    'ကြံခင်း',
+                    'အင်္ဂပူ',
+
+                    'မြန်အောင်',
+                    'ကြံခင်း',
+                    'အင်္ဂပူ',
+                    'စုစုပေါင်း',
+
+                    'မြန်အောင်',
+                    'ကြံခင်း',
+                    'အင်္ဂပူ',
+                    'စုစုပေါင်း',
+
+                    'မြန်အောင်',
+                    'ကြံခင်း',
+                    'အင်္ဂပူ',
+                    'စုစုပေါင်း',
+
+                    'မြန်အောင်',
+                    'ကြံခင်း',
+                    'အင်္ဂပူ',
+                    'စုစုပေါင်း',
+                ];
+
+                let row = 5;
+
+                plans.forEach((plan, index) => {
+
+                    let d = plan.detail ?? {};
+
+                    let eligibleM =
+                        (d.myanaung_total_students ?? 0) -
+                        ((d.myanaung_previous ?? 0) +
+                            (d.myanaung_transferable ?? 0));
+
+                    let eligibleK =
+                        (d.kyankhin_total_students ?? 0) -
+                        ((d.kyankhin_previous ?? 0) +
+                            (d.kyankhin_transferable ?? 0));
+
+                    let eligibleI =
+                        (d.ingapu_total_students ?? 0) -
+                        ((d.ingapu_previous ?? 0) +
+                            (d.ingapu_transferable ?? 0));
+
+                    let total =
+                        eligibleM + eligibleK + eligibleI;
+
+                    let ratio =
+                        total > 0 ?
+                        plan.received_books / total :
+                        0;
+
+                    let allocM =
+                        Math.round(ratio * eligibleM);
+
+                    let allocK =
+                        Math.round(ratio * eligibleK);
+
+                    let allocI =
+                        Math.round(ratio * eligibleI);
+
+                    let unit =
+                        plan.books_per_package ?? 0;
+
+                    let finalM =
+                        (d.myanaung_previous ?? 0) +
+                        allocM +
+                        (d.myanaung_transferable ?? 0);
+
+                    let finalK =
+                        (d.kyankhin_previous ?? 0) +
+                        allocK +
+                        (d.kyankhin_transferable ?? 0);
+
+                    let finalI =
+                        (d.ingapu_previous ?? 0) +
+                        allocI +
+                        (d.ingapu_transferable ?? 0);
+
+                    sheet.getRow(row).values = [
+
+                        index + 1,
+
+                        plan.grade?.name ?? '',
+
+                        plan.book_name?.name ?? '',
+
+                        plan.received_books ?? 0,
+
+                        plan.books_per_package ?? 0,
+
+                        ratio.toFixed(2),
+
+                        eligibleM,
+                        eligibleK,
+                        eligibleI,
+                        total,
+
+                        allocM,
+                        allocK,
+                        allocI,
+                        allocM + allocK + allocI,
+
+                        Math.floor(allocM / unit),
+                        Math.floor(allocK / unit),
+                        Math.floor(allocI / unit),
+
+                        allocM % unit,
+                        allocK % unit,
+                        allocI % unit,
+
+                        d.myanaung_previous ?? 0,
+                        d.kyankhin_previous ?? 0,
+                        d.ingapu_previous ?? 0,
+
+                        d.myanaung_total_students ?? 0,
+                        d.kyankhin_total_students ?? 0,
+                        d.ingapu_total_students ?? 0,
+
+                        (d.myanaung_total_students ?? 0) +
+                        (d.kyankhin_total_students ?? 0) +
+                        (d.ingapu_total_students ?? 0),
+
+                        d.myanaung_transferable ?? 0,
+                        d.kyankhin_transferable ?? 0,
+                        d.ingapu_transferable ?? 0,
+
+                        (d.myanaung_transferable ?? 0) +
+                        (d.kyankhin_transferable ?? 0) +
+                        (d.ingapu_transferable ?? 0),
+
+                        finalM,
+                        finalK,
+                        finalI,
+
+                        finalM + finalK + finalI,
+
+                        finalM - (d.myanaung_total_students ?? 0),
+                        finalK - (d.kyankhin_total_students ?? 0),
+                        finalI - (d.ingapu_total_students ?? 0),
+                        (
+                            finalM - (d.myanaung_total_students ?? 0) +
+                            finalK - (d.kyankhin_total_students ?? 0) +
+                            finalI - (d.ingapu_total_students ?? 0)
+                        )
+
+                    ];
+
+                    row++;
+
+                });
+
+                sheet.eachRow(row => {
+
+                    row.eachCell(cell => {
+
+                        cell.alignment = {
+                            horizontal: 'center',
+                            vertical: 'middle',
+                            wrapText: true
+                        };
+
+
+                        cell.border = {
+                            top: {
+                                style: 'thin'
+                            },
+                            left: {
+                                style: 'thin'
+                            },
+                            bottom: {
+                                style: 'thin'
+                            },
+                            right: {
+                                style: 'thin'
+                            }
+                        };
+
+                    });
+
+                });
+
+                const buffer =
+                    await workbook.xlsx.writeBuffer();
+
+                saveAs(
+                    new Blob([buffer]),
+                    'ခွဲတမ်းတွက်ချက်မှု.xlsx'
+                );
+            }
+        </script>
+    </div>
+@endsection

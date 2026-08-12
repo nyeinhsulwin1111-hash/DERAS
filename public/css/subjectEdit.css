@@ -1,0 +1,323 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f5f7fb;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* ================= WRAPPER ================= */
+.subject-wrapper {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+/* ================= CARD ================= */
+.subject-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    padding: 30px 50px;
+    transition: 0.25s;
+}
+
+.subject-card:hover {
+    transform: translateY(-3px);
+}
+
+/* ================= HEADER ================= */
+.card-header {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+}
+
+.card-header h4 {
+    font-size: 24px;
+    color: #105c3a;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ================= FORM GRID ================= */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* ================= FORM GROUP ================= */
+.form-group label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #105c3a;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.form-group label span {
+    color: #e53935;
+    margin-left: 4px;
+}
+
+/* ================= INPUT ================= */
+.form-group input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid #e3e6ea;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: 0.2s;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #105c3a;
+    box-shadow: 0 0 0 3px rgba(16, 92, 58, 0.15);
+}
+
+/* ================= ERROR ================= */
+.error-text {
+    font-size: 14px;
+    color: #e53935;
+    margin-top: 5px;
+}
+
+/* ================= STATUS TOGGLE ================= */
+
+.status-toggle{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 50px;
+}
+
+.toggle-label{
+    width: 58px;
+    height: 30px;
+    background: #cbd5e1;
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.toggle-circle{
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    transition: 0.3s;
+}
+
+#status:checked + .toggle-label{
+    background: #105c3a;
+}
+
+#status:checked + .toggle-label .toggle-circle{
+    left: 30px;
+}
+
+.status-text{
+    font-weight: 600;
+    color: #105c3a;
+    transition: 0.3s;
+}
+/* =========================
+   ACTION
+========================= */
+.action-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: end;
+    gap: 15px;
+}
+
+.save-btn {
+    background: #105c3a;
+    color: white;
+    border: 1px solid #105c3a;
+    border-radius: 8px;
+    padding: 8px 18px;
+    transition: 0.2s;
+}
+
+.save-btn:hover {
+    background: white;
+    color: #105c3a;
+    border: 2px solid #105c3a;
+}
+
+.reset-btn {
+    background: white;
+    color: #105c3a;
+    border: 2px solid #105c3a;
+    border-radius: 8px;
+    padding: 8px 18px;
+    transition: 0.2s;
+}
+
+.reset-btn:hover {
+    background: #105c3a;
+    color: white;
+}
+
+.action-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.action-btn,
+.action-icons button {
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s;
+}
+
+/* ================= RESPONSIVE 1200px ================= */
+@media (max-width: 1200px) {
+    .subject-wrapper {
+        max-width: 90%;
+    }
+
+    .subject-card {
+        padding: 25px 35px;
+    }
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 992px) {
+    .subject-card {
+        padding: 20px 25px;
+    }
+
+    .card-header h4 {
+        font-size: 20px;
+    }
+}
+
+/* ================= SMALL TABLET ================= */
+@media (max-width: 768px) {
+    .subject-wrapper {
+        margin: 30px auto;
+    }
+
+    .subject-card {
+        padding: 18px 18px;
+    }
+
+    .form-group input {
+        font-size: 14px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .reset-btn,
+    .save-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 576px) {
+
+    .subject-wrapper {
+        padding: 0 10px;
+    }
+
+    .subject-card {
+        padding: 15px;
+    }
+
+    .card-header h4 {
+        font-size: 18px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .toggle-label {
+        width: 45px;
+        height: 24px;
+    }
+
+    .toggle-label .toggle-circle {
+        width: 18px;
+        height: 18px;
+    }
+}
+/* ================= EXTRA SMALL MOBILE ================= */
+@media (max-width: 400px) {
+
+    .subject-wrapper {
+        margin: 20px auto;
+        padding: 0 8px;
+    }
+
+    .subject-card {
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    .card-header h4 {
+        font-size: 16px;
+        text-align: center;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .form-group input {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .action-buttons {
+        gap: 8px;
+    }
+
+    .reset-btn,
+    .save-btn {
+        width: 100%;
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .toggle-label {
+        width: 42px;
+        height: 22px;
+    }
+
+    .toggle-label .toggle-circle {
+        width: 16px;
+        height: 16px;
+        top: 3px;
+    }
+
+    .status-text {
+        font-size: 12px;
+    }
+}

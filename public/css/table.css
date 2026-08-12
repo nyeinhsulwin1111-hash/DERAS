@@ -1,0 +1,255 @@
+.category-page {
+    padding: 28px;
+    background: #ffffff;
+    min-height: 100vh;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.page-title i {
+    color: #157347;
+}
+
+.page-subtitle {
+    color: #64748b;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.top-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    display: flex;
+    width: 360px;
+    max-width: 100%;
+}
+
+.search-box input {
+    border-radius: 10px 0 0 10px;
+    border: 1px solid #d1d5db;
+    padding: 10px 14px;
+    transition: 0.2s;
+}
+
+.search-box input:focus {
+    border-color: #157347;
+    box-shadow: none;
+    outline: none;
+}
+
+.search-btn {
+    width: 60px;
+    border-radius: 0 10px 10px 0;
+    background: white;
+    color: #157347;
+    border: 1px solid #157347;
+    transition: 0.2s;
+}
+
+.search-btn:hover {
+    background: #157347;
+    color: white;
+}
+
+.add-btn {
+    background: white;
+    color: #157347;
+    border: 1px solid #157347;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.2s;
+    box-shadow: none;
+}
+
+.add-btn:hover {
+    background: #157347;
+    color: white;
+}
+
+.table-wrapper {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.custom-table thead {
+    background: white;
+}
+
+.custom-table thead th {
+    color: #157347;
+    border-bottom: 2px solid #157347;
+    padding: 16px;
+    font-size: 16px; /* 👈 bigger text */
+    font-weight: 700;
+}
+
+.custom-table tbody tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background: #f9fafb;
+}
+
+.custom-table tbody tr:hover {
+    background: #eef6f1;
+    transition: 0.2s;
+}
+
+.custom-table tbody td {
+    padding: 16px;
+    border-color: #eef2f7;
+    vertical-align: middle;
+}
+
+.custom-table tbody tr:hover {
+    background: #f9fafb;
+    transition: 0.2s;
+}
+
+.action-btn {
+    border: 1px solid;
+    background: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin: 0 2px;
+}
+
+.btn-edit {
+    color: #198754;
+    border-color: #198754;
+}
+
+.btn-edit:hover {
+    background: #198754;
+    color: white;
+}
+
+.btn-delete {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-delete:hover {
+    background: #dc3545;
+    color: white;
+}
+
+.custom-modal {
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.modal-header {
+    background: #157347;
+    color: white;
+    padding: 18px 22px;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+}
+
+.modal-body {
+    padding: 20px;
+    max-height: 450px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+/* Chrome, Edge, Safari */
+.modal-body::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+    margin: 6px 0;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: #157347;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: #0f5132;
+}
+
+/* Firefox */
+.modal-body {
+    scrollbar-width: thin;
+    scrollbar-color: #f1f5f9;
+}
+
+.modal-footer {
+    padding: 18px 22px;
+}
+
+.custom-input {
+    border-radius: 12px;
+    border: 1px solid #dbe2ea;
+    padding: 11px 14px;
+    box-shadow: none !important;
+}
+
+.custom-input:focus {
+    border-color: #157347;
+    outline: none;
+}
+
+.custom-width{
+    max-width: 750px;
+
+}
+.save-btn {
+    background: white;
+    color: #157347;
+    border: 1px solid #157347;
+    border-radius: 8px;
+    padding: 8px 18px;
+    transition: 0.2s;
+}
+
+.save-btn:hover {
+    background: #157347;
+    color: white;
+}
+
+/*  */
+
+@media (max-width: 768px) {
+    .top-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .add-btn {
+        width: 100%;
+    }
+}
